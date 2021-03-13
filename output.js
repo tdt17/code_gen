@@ -11,11 +11,11 @@ export function getCode(xp, name) {
         InitGlobals()
         playerName = name
         udg_xp_spielerlevel[1] = xp
+        Trig_Fixe_Tabellen_Actions()
         Trig_Encoder_Func001A()
 
         console.log(
-            udg_xp_spielerlevel, 
-            udg_xp_encoded_code
+            udg_xp_encoded_code[1]
         )
     }
 
@@ -1768,6 +1768,55 @@ let i = 0
 		i = i + 1
 	}
 	udg_Wassertankrest = 0
+}export function Trig_Fixe_Tabellen_Actions() {
+	udg_temp_string_3 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	bj_forLoopAIndex = 1
+	bj_forLoopAIndexEnd = StringLength(udg_temp_string_3)
+	while(true) {
+	if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+		udg_xp_scr1A[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
+		bj_forLoopAIndex = bj_forLoopAIndex + 1
+	}
+	udg_temp_string_3 = "YPNRUH6E0ZB4Q-X9ALIO35TWSV2J_MKGD78C"
+	bj_forLoopAIndex = 1
+	bj_forLoopAIndexEnd = StringLength(udg_temp_string_3)
+	while(true) {
+	if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+		udg_xp_scr2A[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
+		bj_forLoopAIndex = bj_forLoopAIndex + 1
+	}
+	udg_temp_string_3 = "%EB4Q-XRJK0ZSD7U9AL8W_CO35TMYPIGH6V2N$)(+][*"
+	bj_forLoopAIndex = 1
+	bj_forLoopAIndexEnd = StringLength(udg_temp_string_3)
+	while(true) {
+	if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+		udg_xp_scr2N_KEY[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
+		bj_forLoopAIndex = bj_forLoopAIndex + 1
+	}
+	udg_temp_string_3 = "WYGZQALBTPEFHVJDCMXSNORUKI"
+	bj_forLoopAIndex = 1
+	bj_forLoopAIndexEnd = StringLength(udg_temp_string_3)
+	while(true) {
+	if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+		udg_xp_scr1N1[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
+		bj_forLoopAIndex = bj_forLoopAIndex + 1
+	}
+	udg_temp_string_3 = "0_:-135962!().847[]"
+	bj_forLoopAIndex = 1
+	bj_forLoopAIndexEnd = StringLength(udg_temp_string_3)
+	while(true) {
+	if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+		udg_xp_scr1N2[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
+		bj_forLoopAIndex = bj_forLoopAIndex + 1
+	}
+	udg_temp_string_3 = "L6MNO7PQ4RST5UVWXYZAB0823CDEFG9HIJK1_"
+	bj_forLoopAIndex = 1
+	bj_forLoopAIndexEnd = StringLength(udg_temp_string_3)
+	while(true) {
+	if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+		udg_xp_scrMP[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
+		bj_forLoopAIndex = bj_forLoopAIndex + 1
+	}
 }export function Trig_Encoder_Func001A() {
 	if(Trig_Encoder_Func001Func001C()) {
 		udg_VariVari2[7]= GetConvertedPlayerId(GetEnumPlayer())
@@ -1876,6 +1925,8 @@ let i = 0
 		udg_xp_encoded_code[udg_VariVari2[10]]=(udg_xp_scr2N_KEY[udg_xp_encoded_cp1[udg_VariVari2[10]]]+(udg_xp_scr3N[udg_xp_encoded_cp2[udg_VariVari2[10]]]+(udg_xp_scr3N[udg_xp_encoded_cp3[udg_VariVari2[10]]]+(udg_xp_scr3N[udg_xp_encoded_cp4[udg_VariVari2[10]]]+(udg_xp_scr3N[udg_xp_encoded_cp5[udg_VariVari2[10]]]+(udg_xp_scr3N[udg_xp_encoded_cp6[udg_VariVari2[10]]]+ udg_xp_scr3N[udg_xp_encoded_cp7[udg_VariVari2[10]]]))))))
 		udg_xp_spielerlevel[udg_VariVari2[10]]=(udg_xp_spielerlevel[udg_VariVari2[10]]+ 9003)
 	}
+}export function Trig_Encoder_Game_Actions() {
+	Trig_Encoder_Game_Func001A()
 }export function Trig_Encoder_Func001Func001C() {
 	if(!(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]< 9999)) {
 		return false
@@ -2339,6 +2390,12 @@ let i = 0
 		udg_xp_scr3N[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
 		bj_forLoopAIndex = bj_forLoopAIndex + 1
 	}
+}export function Trig_Encoder_Game_Func001A() {
+	if(Trig_Encoder_Game_Func001Func001C()) {
+		Trig_Encoder_Game_Func001Func001Func002A()
+	} else {
+		Trig_Encoder_Game_Func001Func001Func001A()
+	}
 }export function Trig_Variable_Tabellen_Func002C() {
 	if(!(udg_xp_keycode == 1)) {
 		return false
@@ -2786,6 +2843,79 @@ let i = 0
 	return true
 }export function Trig_Variable_Tabellen_1k_Func049C() {
 	if(!(udg_xp_keycode == 45)) {
+		return false
+	}
+	return true
+}export function Trig_Encoder_Game_Func001Func001C() {
+	if(!(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]< 1000)) {
+		return false
+	}
+	return true
+}export function Trig_Encoder_Game_Func001Func001Func002A() {
+	if(Trig_Encoder_Game_Func001Func001Func002Func001C()) {
+		udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]=(StringLength(GetPlayerName(GetEnumPlayer()))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+ 0))
+		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(0 +(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))* 2)))
+		udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]+ 0)
+		udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ 3))
+	} else {
+		udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]=(StringLength(GetPlayerName(GetEnumPlayer()))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))))
+		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))* 2)))
+		udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+ 0))
+		udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))+ 3))
+	}
+	if(Trig_Encoder_Game_Func001Func001Func002Func003C()) {
+		DoNothing()
+	} else {
+		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 2)
+	}
+	udg_xp_keycode =(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 0)
+	Trig_Variable_Tabellen_Actions()
+	udg_xp_encoded_code[GetConvertedPlayerId(GetEnumPlayer())]= ""
+	udg_xp_encoded_code[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_scr3N[udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr2N_KEY[udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr3N[udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr3N[udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]]+ ""))))
+	console.log(udg_xp_keycode)
+}export function Trig_Encoder_Game_Func001Func001Func001A() {
+	udg_xp_spielerlevel[GetConvertedPlayerId(GetTriggerPlayer())]=(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]-1000)
+	if(Trig_Encoder_Game_Func001Func001Func001Func002C()) {
+		udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]=(StringLength(GetPlayerName(GetEnumPlayer()))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+ 0))
+		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(0 +(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))* 2)))
+		udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]+ 0)
+		udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ 3))
+		udg_xp_encoded_cp5[GetConvertedPlayerId(GetEnumPlayer())]=(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ 5))
+	} else {
+		udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]=(StringLength(GetPlayerName(GetEnumPlayer()))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))))
+		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))* 2)))
+		udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+ 0))
+		udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))+ 3))
+		udg_xp_encoded_cp5[GetConvertedPlayerId(GetEnumPlayer())]=(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ 5))
+	}
+	if(Trig_Encoder_Game_Func001Func001Func001Func004C()) {
+		DoNothing()
+	} else {
+		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 2)
+	}
+	udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 1)
+	udg_xp_keycode =(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 0)
+	Trig_Variable_Tabellen_Actions()
+	udg_xp_encoded_code[GetConvertedPlayerId(GetEnumPlayer())]= ""
+	udg_xp_encoded_code[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_scr3N[udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr2N_KEY[udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr3N[udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr3N[udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]]+ udg_xp_scr3N[udg_xp_encoded_cp5[GetConvertedPlayerId(GetEnumPlayer())]]))))
+	udg_xp_spielerlevel[GetConvertedPlayerId(GetTriggerPlayer())]=(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]+ 1000)
+}export function Trig_Encoder_Game_Func001Func001Func002Func001C() {
+	if(!(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]<= 99)) {
+		return false
+	}
+	return true
+}export function Trig_Encoder_Game_Func001Func001Func002Func003C() {
+	if(!(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]<= 688)) {
+		return false
+	}
+	return true
+}export function Trig_Encoder_Game_Func001Func001Func001Func002C() {
+	if(!(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]<= 99)) {
+		return false
+	}
+	return true
+}export function Trig_Encoder_Game_Func001Func001Func001Func004C() {
+	if(!(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]<= 688)) {
 		return false
 	}
 	return true

@@ -40,6 +40,9 @@ const TYPES = [
 ]
 
 const REPLACES = (isGlobal = false) => [
+    ['ForForce(GetPlayersByMapControl(MAP_CONTROL_USER), function Trig_Encoder_Game_Func001Func001Func002A)', 'Trig_Encoder_Game_Func001Func001Func002A()'],
+    ['ForForce(GetPlayersMatching(Condition(function Trig_Encoder_Game_Func001Func001Func001001001)), function Trig_Encoder_Game_Func001Func001Func001A)', 'Trig_Encoder_Game_Func001Func001Func001A()'],
+    ['ForForce(udg_verteidiger, function Trig_Encoder_Game_Func001A)', 'Trig_Encoder_Game_Func001A()'],
     [') then', ') {'],
     ['else', '} else {'],
     ['endif', '}'],
@@ -82,6 +85,7 @@ const rewrite = (line, isGlobal) => {
 const FITLERS = [
     'CreateForce',
     'DialogCreate',
+    'DestroyTrigger',
     'CreateTimer',
     'CreateGroup',
     'globals',
@@ -103,16 +107,16 @@ const FILLS = [
         InitGlobals()
         playerName = name
         udg_xp_spielerlevel[1] = xp
+        Trig_Fixe_Tabellen_Actions()
         Trig_Encoder_Func001A()
 
         console.log(
-            udg_xp_spielerlevel, 
-            udg_xp_encoded_code
+            udg_xp_encoded_code[1]
         )
     }
 ]
 let extractJS = FILLS.map(fn => 'export ' + fn.toString()).join('\n') + '\n\n'
-const dep = [blocks[0], findFnBlock("InitGlobals"), findFnBlock("Trig_Encoder_Func001A")]
+const dep = [blocks[0], findFnBlock("InitGlobals"), findFnBlock('Trig_Fixe_Tabellen_Actions'), findFnBlock("Trig_Encoder_Func001A"), findFnBlock('Trig_Encoder_Game_Actions')]
 let block
 let i = 0
 while(block = dep[i++]) {
