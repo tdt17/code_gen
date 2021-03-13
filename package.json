@@ -1,0 +1,16 @@
+{
+  "name": "gen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gen.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon gen.js --ignore output.js",
+    "exec": "nodemon output.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
