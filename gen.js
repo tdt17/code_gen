@@ -51,6 +51,7 @@ const REPLACES = (isGlobal = false) => [
     ['local ', ''],
     ['not(', '!('],
     ['not ', '! '],
+    [/=\((.+)\/(.+)\)/, '=~~($1/$2)'],
     ...TYPES.map(type => [`	${type} `, isGlobal ? 'export let ' : 'let ']),
     [/array (\w+)/, '$1 = []'],
     ['endloop', '}'],
@@ -93,7 +94,7 @@ const FITLERS = [
 ]
 
 const FILLS = [
-    'let bj_forLoopAIndex = 0, bj_forLoopAIndexEnd = 0, playerName = "Test"',
+    'let bj_forLoopAIndex = 0, bj_forLoopAIndexEnd = 0, playerName = \'TdT\'',
     function GetConvertedPlayerId(i) { return i + 1 },
     function ConvertedPlayer(i) { return i - 1 },
     function GetEnumPlayer() { return 0 },
@@ -111,9 +112,7 @@ const FILLS = [
         Trig_SN_Encoder_Actions()
         Trig_Encoder_Actions()
 
-        console.log(
-            udg_xp_encoded_code[1]
-        )
+        return udg_xp_encoded_code[1]
     }
 ]
 let extractJS = FILLS.map(fn => 'export ' + fn.toString()).join('\n') + '\n\n'
@@ -134,7 +133,7 @@ while(block = dep[i++]) {
         .join('\n')
 }
 
-extractJS += '\n\ngetCode(9000, "0")'
+extractJS += '\n\nconsole.log(getCode(1000, \'tdt\'))'
 
 writeFileSync('output.js', extractJS, 'utf8')
 

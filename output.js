@@ -1,4 +1,4 @@
-export let bj_forLoopAIndex = 0, bj_forLoopAIndexEnd = 0, playerName = "Test"
+export let bj_forLoopAIndex = 0, bj_forLoopAIndexEnd = 0, playerName = 'TdT'
 export function GetConvertedPlayerId(i) { return i + 1 }
 export function ConvertedPlayer(i) { return i - 1 }
 export function GetEnumPlayer() { return 0 }
@@ -16,9 +16,7 @@ export function getCode(xp, name) {
         Trig_SN_Encoder_Actions()
         Trig_Encoder_Actions()
 
-        console.log(
-            udg_xp_encoded_code[1]
-        )
+        return udg_xp_encoded_code[1]
     }
 
 export let udg_Monster_Amount = 0
@@ -1866,7 +1864,7 @@ let i = 0
 		if(Trig_Encoder_Func001Func001Func037C()) {
 			udg_xp_encoded_cp6[udg_VariVari2[7]]= 1
 		} else {
-			udg_xp_encoded_cp6[udg_VariVari2[7]]=((udg_xp_spielerlevel[udg_VariVari2[7]]/ 350)+(udg_xp_clear[2]+ 0))
+			udg_xp_encoded_cp6[udg_VariVari2[7]]=~~((udg_xp_spielerlevel[udg_VariVari2[7]]/ 350)+(udg_xp_clear[2]+ 0))
 		}
 		if(Trig_Encoder_Func001Func001Func039C()) {
 			udg_xp_encoded_cp1[udg_VariVari2[7]]=(udg_xp_encoded_cp1[udg_VariVari2[7]]-1)
@@ -1922,7 +1920,7 @@ let i = 0
 		if(Trig_Encoder_Func001Func001Func016C()) {
 			udg_xp_encoded_cp6[udg_VariVari2[10]]= 1
 		} else {
-			udg_xp_encoded_cp6[udg_VariVari2[10]]=((udg_xp_spielerlevel[udg_VariVari2[10]]/ 350)+(udg_xp_clear[2]+ 0))
+			udg_xp_encoded_cp6[udg_VariVari2[10]]=~~((udg_xp_spielerlevel[udg_VariVari2[10]]/ 350)+(udg_xp_clear[2]+ 0))
 		}
 		if(Trig_Encoder_Func001Func001Func018C()) {
 			udg_xp_encoded_cp1[udg_VariVari2[10]]=(udg_xp_encoded_cp1[udg_VariVari2[10]]-1)
@@ -3105,4 +3103,4 @@ let i = 0
 	return false
 }
 
-getCode(9000, "0")
+console.log(getCode(1000, 'tdt'))
