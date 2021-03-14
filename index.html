@@ -1,0 +1,3282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code Gen Shopping Maul</title>
+</head>
+<body>
+    <table style="border: none">
+        <tr>
+            <td>Name:</td>
+            <td><input id="name" /></td>
+        </tr>
+        <tr>
+            <td>XP (10-15000):</td>
+            <td><input id="xp" /></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: right;">
+                <button onclick="generate()">Gen</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Code:</td>
+            <td><input id="code" disabled></td>
+        </tr>
+    </table>
+
+    <script>
+        function generate() {
+            const name = document.getElementById('name').value
+            const xp = Number.parseInt(document.getElementById('xp').value, 10)
+            const code = getCode(xp, name)
+            document.getElementById('code').value = code
+        }
+    </script>
+
+    <script>
+        let bj_forLoopAIndex = 0, bj_forLoopAIndexEnd = 0, playerName = 'TdT'
+        function GetConvertedPlayerId(i) { return i + 1 }
+        function ConvertedPlayer(i) { return i - 1 }
+        function GetEnumPlayer() { return 0 }
+        function S2I(s) { return Number.parseInt(s, 10) }
+        function I2S(i) { return String(i) }
+        function SubStringBJ(str, start, end) { return str.substring(start - 1, end) }
+        function StringLength(str) { return str.length }
+        function StringCase(str) { return str.toLowerCase() }
+        function GetPlayerName() { return playerName }
+        function getCode(xp, name) {
+                InitGlobals()
+                playerName = name
+                udg_xp_spielerlevel[1] = xp
+                Trig_Fixe_Tabellen_Actions()
+                Trig_SN_Encoder_Actions()
+                Trig_Encoder_Func001A()        
+                return udg_xp_encoded_code[1]
+        }
+        
+        let udg_Monster_Amount = 0
+        let udg_Monster_Type = []
+        let udg_Lives = 0
+        let udg_NoLivesLost = false
+        let udg_verteidiger = null
+        let udg_DiffDialog = null
+        let udg_dia_sehr_einfach = null
+        let udg_Normal = null
+        let udg_Hard = null
+        let udg_Perfection = null
+        let udg_Spielerzahl = 0
+        let udg_colortext = []
+        let udg_Lebensbalken
+        let udg_VariVari = []
+        let udg_SpielerMultiPlatz = []
+        let udg_auszeichnungen = []
+        let udg_Konto = []
+        let udg_IstBank = []
+        let udg_Lives_Lost_Tmp = 0
+        let udg_Kills_Rangliste = []
+        let udg_Platzierung = []
+        let udg_Platzierung_Reverse = []
+        let udg_Towerzahl = []
+        let udg_IstKino = []
+        let udg_DiffCounter = []
+        let udg_IstObi = []
+        let udg_IstBeate = []
+        let udg_stopflags = []
+        let udg_bonus_typ = []
+        let udg_Level_Run = false
+        let udg_handicap_pl12 = 0
+        let udg_balance_gold_total = 0
+        let udg_KickDialog = null
+        let udg_KickPlayerChoose = []
+        let udg_ausz_egoist = []
+        let udg_Spendenkonto_gtotal = []
+        let udg_ausz_unentschl = []
+        let udg_ausz_banker = []
+        let udg_ausz_wette = []
+        let udg_copydialog = null
+        let udg_dia_copy_ja = null
+        let udg_dia_copy_Nein = null
+        let udg_copy_ziel = []
+        let udg_IstHM = []
+        let udg_IstTUI = []
+        let udg_IstA0K = []
+        let udg_lp_tab = []
+        let udg_aok_killcounter = 0
+        let udg_Lebensbalken_Counter = 0
+        let udg_Items_Speicher = []
+        let udg_IstIkea = []
+        let udg_TUI_Upgradegeld = []
+        let udg_IstPost = []
+        let udg_Easy = null
+        let udg_ModusDialog = null
+        let udg_Modus_Wahl = []
+        let udg_Modus_STD_G = false
+        let udg_Modus_STD_L = false
+        let udg_Modus_KILL_Menge = 0
+        let udg_creep_counter = 0
+        let udg_KillsTemp_Total = 0
+        let udg_Killbalken
+        let udg_Killbalken_Counter = 0
+        let udg_Modus_MASSAKER = false
+        let udg_Modus_KILL222 = false
+        let udg_Kick = false
+        let udg_floating_text = []
+        let udg_floating_displayTMP
+        let udg_punkte_string
+        let udg_punkte = 0
+        let udg_punkte_string_2
+        let udg_punkte_pruefstring
+        let udg_punkte_spielerzahl = []
+        let udg_spiel_laeuft = false
+        let udg_spezial_typ_wahl = 0
+        let udg_IstAldi = []
+        let udg_IstMediaMarkt = []
+        let udg_IstTanteEmma = []
+        let udg_IstPorsche = []
+        let udg_IstAral = []
+        let udg_IstMcD = []
+        let udg_IstCopyShop = []
+        let udg_IstGarten = []
+        let udg_Modus_Auge = false
+        let udg_anabolika_geld = 0
+        let udg_IstFitness = []
+        let udg_goldstring
+        let udg_goldamount_pp = []
+        let udg_time_total
+        let udg_timer_parts = []
+        let udg_unit_switch_1 = 0
+        let udg_unit_switch_2 = 0
+        let udg_xp = []
+        let udg_xp_diff_faktor = 0
+        let udg_xp_spielerlevel = []
+        let udg_xp_scr1A = []
+        let udg_xp_scr2A = []
+        let udg_xp_encoded_sn1 = []
+        let udg_xp_encoded_sn2 = []
+        let udg_xp_encoded_sn3 = []
+        let udg_xp_encoded_cp1 = []
+        let udg_xp_encoded_cp2 = []
+        let udg_xp_encoded_cp3 = []
+        let udg_xp_encoded_cp4 = []
+        let udg_xp_encoded_code = []
+        let udg_xp_entered_code = []
+        let udg_xp_decoded_1 = []
+        let udg_xp_decoded_2 = []
+        let udg_xp_decoded_4 = []
+        let udg_xp_decoded_3 = []
+        let udg_xp_encoded_cp5 = []
+        let udg_xp_decoded_5 = []
+        let udg_xp_spielerlevel_tmp = []
+        let udg_xp_retry = []
+        let udg_VariReal = 0
+        let udg_gold_multi_ppl = []
+        let udg_IstBI = []
+        let udg_rassen_std = []
+        let udg_rassen_pro = []
+        let udg_xp_keycode = 0
+        let udg_xp_encoded_sn4_2 = []
+        let udg_xp_scr3N = []
+        let udg_xp_scr1N1 = []
+        let udg_Modus_PWR_NEW = false
+        let udg_IstBoss = false
+        let udg_Next_Level_POWER = null
+        let udg_sound = false
+        let udg_SubModusDialog = null
+        let udg_SubModus_Wahl = []
+        let udg_Sub_Geldteilen = false
+        let udg_Sub_KXP = false
+        let udg_Host = null
+        let udg_xp_scr1N2 = []
+        let udg_xp_scr2N_KEY = []
+        let udg_Sub_UNIQUE = false
+        let udg_Typ_Std_pp = []
+        let udg_Typ_Pro_pp = []
+        let udg_geldteilen = 0
+        let udg_KillsTemp = []
+        let udg_KillsTotal = []
+        let udg_id_gezeigt = false
+        let udg_version
+        let udg_Sub_AR = false
+        let udg_xp_o_fake2 = []
+        let udg_xp_o3 = []
+        let udg_builder = []
+        let udg_xp_encoded_sn2_2 = []
+        let udg_autodeposit = []
+        let udg_floating_counter_BI = 0
+        let udg_floating_displayTMP_BI
+        let udg_floating_text_BI = []
+        let udg_floating_unit_BI = []
+        let udg_temp_point = null
+        let udg_auswahl_getroffen = []
+        let udg_aktuelles_level = 0
+        let udg_Gesamtwert = []
+        let udg_hauptgebaeude = []
+        let udg_Monstertype_Selector = 0
+        let udg_Diff_CorrMaster = 0
+        let udg_player_region = []
+        let udg_color_ppl_red = []
+        let udg_color_ppl_blue = []
+        let udg_color_ppl_green = []
+        let udg_Gold_Amount = 0
+        let udg_temp_point2 = null
+        let udg_typ_air = false
+        let udg_typ_boss = false
+        let udg_typ_normal = false
+        let udg_Diff_Autobalance = 0
+        let udg_last_lptab = 0
+        let udg_diff_min = 0
+        let udg_diff_max = 0
+        let udg_Diff_Autobalance_Speicher = []
+        let udg_gebiet_leer = []
+        let udg_penalty = 0
+        let udg_penalty_temp = 0
+        let udg_defeat = false
+        let udg_Next_Level = null
+        let udg_XpDialog = []
+        let udg_camdistance = []
+        let udg_teampunkte = []
+        let udg_player_ger = null
+        let udg_spiel_ID
+        let udg_NextLevelTW = null
+        let udg_Lifes_Left = 0
+        let udg_Lifes_Total = 0
+        let udg_punkteanpassung = 0
+        let udg_filialnamen_ger = []
+        let udg_filialnamen_ger_PRO = []
+        let udg_wpspot = []
+        let udg_wegpunkte = []
+        let udg_spez_ger = []
+        let udg_Minipet_Art = []
+        let udg_Datas = null
+        let udg_xp_test = []
+        let udg_alarm = 0
+        let udg_temp_group = null
+        let udg_tempp = null
+        let udg_fever = []
+        let udg_LCTimer = []
+        let udg_LCTTW = []
+        let udg_temp_group2 = null
+        let udg_LC = []
+        let udg_temp_unit = []
+        let udg_birdeye = []
+        let udg_VariVari2 = []
+        let udg_Creeps = null
+        let udg_nosfx = false
+        let udg_Spezialtyp = []
+        let udg_floating_gold = 0
+        let udg_floating_owner = null
+        let udg_Upgradegeld = []
+        let udg_worth_flag = []
+        let udg_rabatt = []
+        let udg_temp_string_1
+        let udg_interpunktieren = []
+        let udg_Minipet = []
+        let udg_temp_point_save = []
+        let udg_DronesG = null
+        let udg_Drones = []
+        let udg_VariVari_SS = []
+        let udg_dialog = null
+        let udg_IstWeap = []
+        let udg_enter_debug = false
+        let udg_tbool = false
+        let udg_tempu = null
+        let udg_tempint = 0
+        let udg_noobie_mode = false
+        let udg_Sub_NoSpecial = false
+        let udg_xpert = []
+        let udg_vari_string
+        let udg_vari_bool = false
+        let udg_Lifes_Lost = 0
+        let udg_Lifes_Lost_Tmp = 0
+        let udg_creeps_k_m = []
+        let udg_KillsTotal_Power = []
+        let udg_Sub_Sandbox = false
+        let udg_leftround = []
+        let udg_allow = []
+        let udg_ausz_bau = []
+        let udg_DiffSmart = 0
+        let udg_DiffCounterSmart = 0
+        let udg_diff_add = 0
+        let udg_ausz_autobalance = []
+        let udg_diff_adjust = 0
+        let udg_Playerbusy = []
+        let udg_ausz_leben = []
+        let udg_ausz_bank = 0
+        let udg_punktemultiplikator = 0
+        let udg_PlayerPunkteMultiplikator = 0
+        let udg_securtiy_decoded = []
+        let udg_xp_clear = []
+        let udg_xp_encoded_cp6 = []
+        let udg_tempint3 = 0
+        let udg_temp_string_3
+        let udg_xp_flag = []
+        let udg_xp_decoded_6 = []
+        let udg_xp_scrMP = []
+        let udg_ueberweisung_laeuft = []
+        let udg_AbhebTimer = []
+        let udg_AbhebTTW = []
+        let udg_vari_string2
+        let udg_dialog_pp = []
+        let udg_team = []
+        let udg_ap = null
+        let udg_button_ja = []
+        let udg_button_nein = []
+        let udg_RamboSouls = []
+        let udg_MyMulti = []
+        let udg_IstEbay = []
+        let udg_CanSell = []
+        let udg_SpecialEffekt = []
+        let udg_RundenGold = []
+        let udg_Impossible = null
+        let udg_RestDiff = 0
+        let udg_LPtoAdd = 0
+        let udg_anabolik = false
+        let udg_txtP = []
+        let udg_h = null
+        let udg_goldBonusRunde = 0
+        let udg_ObiKills = []
+        let udg_TPUse = []
+        let udg_VariReal2 = []
+        let udg_treal = 0
+        let udg_Maxlife = 0
+        let udg_spawn = null
+        let udg_IstSpiel = []
+        let udg_leaver = null
+        let udg_LeaverMoney = []
+        let udg_xp_decoded_7 = []
+        let udg_xp_encoded_cp7 = []
+        let udg_Spieler = []
+        let udg_GradEinheit = 0
+        let udg_Gartensystem = null
+        let udg_Supply = null
+        let udg_tmp = 0
+        let udg_tmpBool = false
+        let udg_tmp2 = 0
+        let udg_p1 = null
+        let udg_p2 = null
+        let udg_TransferRate = 0
+        let udg_t = []
+        let udg_Transferd = []
+        let udg_Verbunden = 0
+        let udg_test = null
+        let udg_Wassertanks = null
+        let udg_p1_Kopieren = null
+        let udg_p2_Kopieren = null
+        let udg_tmp_Kopieren = 0
+        let udg_tmp2_Kopieren = 0
+        let udg_TransferRate_Kopieren = 0
+        let udg_Transferd_Kopieren = []
+        let udg_t_Kopieren = []
+        let udg_Manadiffer = 0
+        let udg_brunnen = null
+        let udg_MPja = []
+        let udg_Wassertankrest = 0
+        let gg_rct_Ende = null
+        let gg_rct_Ende_Kopieren = null
+        let gg_rct_Move_Mitte = null
+        let gg_rct_Move_Mitte_Links = null
+        let gg_rct_Move_Mitte_Links_Oben = null
+        let gg_rct_Move_Mitte_Links_Unten = null
+        let gg_rct_Move_Mitte_Rechts = null
+        let gg_rct_Move_Mitte_Rechts_Oben = null
+        let gg_rct_Move_Mitte_Rechts_Unten = null
+        let gg_rct_Order_Mitte = null
+        let gg_rct_Order_Mitte_Links = null
+        let gg_rct_Order_Mitte_Links_Oben = null
+        let gg_rct_Order_Mitte_Links_Unten = null
+        let gg_rct_Order_Mitte_Rechts = null
+        let gg_rct_Order_Mitte_Rechts_Oben = null
+        let gg_rct_Order_Mitte_Rechts_Unten = null
+        let gg_rct_Player1 = null
+        let gg_rct_Player10 = null
+        let gg_rct_Player11 = null
+        let gg_rct_Player2 = null
+        let gg_rct_Player3 = null
+        let gg_rct_Player4 = null
+        let gg_rct_Player5 = null
+        let gg_rct_Player6 = null
+        let gg_rct_Player7 = null
+        let gg_rct_Player8 = null
+        let gg_rct_Player9 = null
+        let gg_rct_Spawn1 = null
+        let gg_rct_Spawn11 = null
+        let gg_rct_Spawn12 = null
+        let gg_rct_Spawn2 = null
+        let gg_rct_Spawn3 = null
+        let gg_rct_Spawn4 = null
+        let gg_rct_Spawn8 = null
+        let gg_rct_Spawn9 = null
+        let gg_rct_Startup_Oben_Links = null
+        let gg_rct_Startup_Oben_Rechts = null
+        let gg_rct_Spawn13 = null
+        let gg_rct_Spawn14 = null
+        let gg_rct_Startup_Unten_Links = null
+        let gg_rct_Spawn15 = null
+        let gg_rct_Spawn16 = null
+        let gg_rct_Startup_Unten_Rechts = null
+        let gg_rct_Move_TMitteL_Oben = null
+        let gg_rct_Order_TMitteL_Oben = null
+        let gg_rct_Move_TMitteL_Unten = null
+        let gg_rct_Order_TMitteL_Unten = null
+        let gg_rct_Move_TMitteR_Oben = null
+        let gg_rct_Order_TMitteR_Oben = null
+        let gg_rct_Move_TMitteR_Unten = null
+        let gg_rct_Order_TMitteR_Unten = null
+        let gg_rct_Move_TMitteR = null
+        let gg_rct_Gateopener = null
+        let gg_rct_Remover = null
+        let gg_rct_Move_Tele_RD = null
+        let gg_rct_Move_Tele_RU = null
+        let gg_rct_Move_Tele_LU = null
+        let gg_rct_Move_Tele_LD = null
+        let gg_rct_Debug1 = null
+        let gg_rct_Debug2 = null
+        let gg_rct_Move_Tele_MRD = null
+        let gg_rct_Move_Tele_MRU = null
+        let gg_rct_Move_Tele_MLU = null
+        let gg_rct_Move_Tele_MLD = null
+        let gg_rct_Move_TMitteL = null
+        let gg_rct_XtraMP1 = null
+        let gg_rct_XtraMP2 = null
+        let gg_rct_XtraMP3 = null
+        let gg_rct_XtraMP4 = null
+        let gg_rct_StartupMitteLinks = null
+        let gg_rct_StartupMitteRechts = null
+        let gg_rct_Blockgebietrot1 = null
+        let gg_rct_Blockgebietrot2 = null
+        let gg_rct_Blockgebietrot3 = null
+        let gg_rct_Blockgebietblau1 = null
+        let gg_rct_Blockgebietblau2 = null
+        let gg_rct_Blockgebietblau3 = null
+        let gg_rct_Blockgebietpink3 = null
+        let gg_rct_Blockgebietpink2 = null
+        let gg_rct_Blockgebietpink1 = null
+        let gg_rct_Blockgebietlila1 = null
+        let gg_rct_Blockgebietlila2 = null
+        let gg_rct_Blockgebietlila3 = null
+        let gg_rct_Blockgebietorang1 = null
+        let gg_rct_Blockgebietorang2 = null
+        let gg_rct_Blockgebietorang3 = null
+        let gg_rct_Blockgebiethellblau1 = null
+        let gg_rct_Blockgebiethellblau2 = null
+        let gg_rct_Blockgebiethellblau3 = null
+        let gg_rct_Blockgebietteal1 = null
+        let gg_rct_Blockgebietteal2 = null
+        let gg_rct_Blockgebietteal3 = null
+        let gg_rct_Blockgebietgelb1 = null
+        let gg_rct_Blockgebietgelb2 = null
+        let gg_rct_Blockgebietgelb3 = null
+        let gg_rct_Blockgebietgruen1 = null
+        let gg_rct_Blockgebietgruen2 = null
+        let gg_rct_Blockgebietgruen3 = null
+        let gg_rct_Blockgebietdunkel1 = null
+        let gg_rct_Blockgebietdunkel2 = null
+        let gg_rct_Blockgebietdunkel3 = null
+        let gg_rct_Blockgebietgrau1 = null
+        let gg_rct_Blockgebietgrau2 = null
+        let gg_rct_Blockgebietgrau3 = null
+        let gg_cam_Camera_001 = null
+        let gg_snd_MageTowerWhat1 = null
+        let gg_snd_Loading = null
+        let gg_snd_GoodJob = null
+        let gg_snd_AutoCastButtonClick1 = null
+        let gg_snd_BlueFireBurst = null
+        let gg_snd_Switch = null
+        let gg_snd_ArrangedTeamInvitation = null
+        let gg_snd_SecretFound = null
+        let gg_snd_Warning = null
+        let gg_snd_TheHornOfCenarius = null
+        let gg_snd_SargerasLaugh = null
+        let gg_snd_ItemReceived = null
+        let gg_snd_SecretFound01 = null
+        let gg_snd_HoofSteps1 = null
+        let gg_snd_Hint = null
+        let gg_snd_Bonus = null
+        let gg_snd_SargerasRoar = null
+        let gg_snd_SP_Ich_tue_mein_Bestes = null
+        let gg_snd_SP_Gute_Idee = null
+        let gg_snd_SP_Sofort = null
+        let gg_snd_SP_Peng = null
+        let gg_snd_SP_Natuerlich = null
+        let gg_snd_SP_Gleich_zeig_ich_euch_mal_wie_man_spielt = null
+        let gg_snd_SP_Voll_der_Hammer = null
+        let gg_snd_SP_Sauer = null
+        let gg_snd_SP_Hallo = null
+        let gg_snd_SP_Sehr_gut = null
+        let gg_snd_SP_Das_ist_sonderbar = null
+        let gg_snd_SP_Hoert_sich_gut_an = null
+        let gg_snd_SP_Nein_ist_das_euer_letztes_Wort = null
+        let gg_snd_SP_Genial = null
+        let gg_snd_SP_Blut = null
+        let gg_snd_SP_Bleibt_mir_vom_Leib = null
+        let gg_snd_SP_Was_braucht_ihr = null
+        let gg_snd_SP_lasst_mich_ma_ran = null
+        let gg_snd_SP_Seht_zu_und_lernt = null
+        let gg_snd_SP_Ich_bin_gespannt = null
+        let gg_snd_SP_Kein_Wort_mehr = null
+        let gg_snd_SP_Da_hab_ich_was_fuer_euch = null
+        let gg_snd_SP_Gute_Wahl = null
+        let gg_snd_load_new = null
+        let gg_snd_generic = null
+        let gg_snd_SP_lol = null
+        let gg_snd_Domination = null
+        let gg_snd_Generic = null
+        let gg_snd_Menu = null
+        let gg_snd_SP2_Hunger = null
+        let gg_snd_SP2_fertig = null
+        let gg_snd_SP2_wtf = null
+        let gg_snd_SP2_nerv = null
+        let gg_snd_SP2_fuck = null
+        let gg_snd_SP2_betrunken = null
+        let gg_snd_LC = null
+        let gg_snd_Alarm = null
+        let gg_trg_Int = null
+        let gg_trg_Startsequenz = null
+        let gg_trg_Spieler_und_Starteinstellung = null
+        let gg_trg_Builder_erstellen = null
+        let gg_trg_Hauptkonstanten = null
+        let gg_trg_Gegnertypen = null
+        let gg_trg_Dekonstruktor = null
+        let gg_trg_Zufallsrasse_STD = null
+        let gg_trg_Zufallsrasse_PRO = null
+        let gg_trg_Zufallsrasse_PRO_STD = null
+        let gg_trg_Auswahl_getroffen = null
+        let gg_trg_Auto_wahl = null
+        let gg_trg_Funktionen_aktivieren = null
+        let gg_trg_Neues_Level = null
+        let gg_trg_Power_Trigger = null
+        let gg_trg_Modi_Gegnermenge = null
+        let gg_trg_Spezialrunden_Wahl = null
+        let gg_trg_Blockgebiete_aus_ein = null
+        let gg_trg_Gegner_Group = null
+        let gg_trg_Gegner_Line = null
+        let gg_trg_Leere_Gebiete_finden = null
+        let gg_trg_kill_autodebug = null
+        let gg_trg_Level_Vorbei = null
+        let gg_trg_Level_Vorbei_2 = null
+        let gg_trg_Creepwahl = null
+        let gg_trg_Aral_Downgrade_Kopieren = null
+        let gg_trg_Gold_und_Tips_und_Re= null
+        let gg_trg_Zinsen_und_Specials = null
+        let gg_trg_Gegner_betritt_Spiel = null
+        let gg_trg_Leichen_entfernen = null
+        let gg_trg_Angriff_verhindern = null
+        let gg_trg_Spielereinheiten_betreten = null
+        let gg_trg_Towerlimit_u_andres = null
+        let gg_trg_Towerzahl = null
+        let gg_trg_Autobalance = null
+        let gg_trg_Lebenspunkte_anpassen = null
+        let gg_trg_Sieg = null
+        let gg_trg_SiegPower = null
+        let gg_trg_Niederlage = null
+        let gg_trg_Destructor = null
+        let gg_trg_defeat_player = null
+        let gg_trg_Bonusrunden_vorbei = null
+        let gg_trg_victory_player = null
+        let gg_trg_Auszeichnungen_Sortieren = null
+        let gg_trg_Ehrungen = null
+        let gg_trg_Hall_of_Fame = null
+        let gg_trg_XP_und_Ulti_Tower_freigeben = null
+        let gg_trg_Check = null
+        let gg_trg_jeder_sek_auf_max_hp = null
+        let gg_trg_Chuck_bauen = null
+        let gg_trg_Held_Chuck_Level = null
+        let gg_trg_ausbau_chuck_bonuis = null
+        let gg_trg_Chuck_Norris = null
+        let gg_trg_Rambo = null
+        let gg_trg_Rambo_soul_collector = null
+        let gg_trg_Staic_Noise_Burning = null
+        let gg_trg_Staic_Plan_B_up = null
+        let gg_trg_Unzuverlaessig_2 = null
+        let gg_trg_Unzuverlaessig_1 = null
+        let gg_trg_Food_Upgrade = null
+        let gg_trg_Alarm = null
+        let gg_trg_Creepfaerbung_und_Casts_und_SECURE = null
+        let gg_trg_Altersheim = null
+        let gg_trg_Markieren = null
+        let gg_trg_Tote_Helden_entfernen = null
+        let gg_trg_Klassifikation_aendern = null
+        let gg_trg_Sammelpunkt_und_Farbe = null
+        let gg_trg_LC_aktiviren = null
+        let gg_trg_LC_aktiviren_text = null
+        let gg_trg_LC_entfernen = null
+        let gg_trg_LC_Timer_weg = null
+        let gg_trg_Zoom_Einstellung_UND_HOLZ = null
+        let gg_trg_Tipps_GER = null
+        let gg_trg_Floating_Gold = null
+        let gg_trg_Upgrades_Goldcounter = null
+        let gg_trg_Rabatt_Tower = null
+        let gg_trg_Info = null
+        let gg_trg_Tausendertrenner = null
+        let gg_trg_Minipet_Teleport = null
+        let gg_trg_Bonusgegner = null
+        let gg_trg_Verkauf = null
+        let gg_trg_Egoist = null
+        let gg_trg_TUI_Upgrades = null
+        let gg_trg_Items_Drop_Kopieren = null
+        let gg_trg_Itemwert = null
+        let gg_trg_Ikea_Combo = null
+        let gg_trg_Items_Entfernen = null
+        let gg_trg_Items_Not_Buyable = null
+        let gg_trg_Rabatt = null
+        let gg_trg_G_camomileimbau = null
+        let gg_trg_G_Neu = null
+        let gg_trg_G_Neu_Tank = null
+        let gg_trg_G_Abbruch = null
+        let gg_trg_G_Refresh = null
+        let gg_trg_G_Activate = null
+        let gg_trg_Geld_fuer_Anabolika = null
+        let gg_trg_F_Held_AutoAufstieg = null
+        let gg_trg_F_Item_Upgrades = null
+        let gg_trg_F_Autoblocker = null
+        let gg_trg_F_Autoblocker_stoppt = null
+        let gg_trg_F_Trainer = null
+        let gg_trg_C_Tower_copy_Dialog = null
+        let gg_trg_Tower_copy_Ja = null
+        let gg_trg_Tower_copy_Nein = null
+        let gg_trg_B_Creator = null
+        let gg_trg_B_Destroyer = null
+        let gg_trg_B_Activate = null
+        let gg_trg_B_Darkness_AN = null
+        let gg_trg_B_Darkness_AUS = null
+        let gg_trg_B_Ladezustand_Anzeige = null
+        let gg_trg_B_Anzeige_Refresh = null
+        let gg_trg_Filialwert = null
+        let gg_trg_P_Tausch = null
+        let gg_trg_P_Autotransfer = null
+        let gg_trg_W_Verbrauch = null
+        let gg_trg_W_Keine_Doppelten = null
+        let gg_trg_W_Begrenzung_auf_5 = null
+        let gg_trg_W_Freezer = null
+        let gg_trg_I_Item = null
+        let gg_trg_I_Item_2 = null
+        let gg_trg_Change_target = null
+        let gg_trg_Aibo_und_Reactor_Dummys = null
+        let gg_trg_Chuck_Norris_bonus = null
+        let gg_trg_Kill_units = null
+        let gg_trg_Cactuzz_Size_CHanging = null
+        let gg_trg_Sheep_explode = null
+        let gg_trg_El_Shadow = null
+        let gg_trg_Death = null
+        let gg_trg_Downgrade = null
+        let gg_trg_A_Large_Supplier_autocast = null
+        let gg_trg_A_Large_Supplier_autocast_2 = null
+        let gg_trg_A_Large_Supplier = null
+        let gg_trg_Bau = null
+        let gg_trg_Add = null
+        let gg_trg_Remove = null
+        let gg_trg_Supply = null
+        let gg_trg_Wassertanks = null
+        let gg_trg_aktualisierung = null
+        let gg_trg_aktualisierungtank = null
+        let gg_trg_Bonus_Upgrade = null
+        let gg_trg_Bonus_Ja = null
+        let gg_trg_Bonus_Nein = null
+        let gg_trg_Allspark = null
+        let gg_trg_FirePanda = null
+        let gg_trg_Autocast_TREX = null
+        let gg_trg_Autocast_Lassie = null
+        let gg_trg_Activate_Autocast_Aldi = null
+        let gg_trg_Autocast_Cinemaxx = null
+        let gg_trg_Autocast_Chain_Lightning = null
+        let gg_trg_Autocast_Shockwave = null
+        let gg_trg_Autocast_Thunder = null
+        let gg_trg_Autocast_AirZap = null
+        let gg_trg_Autocast_Ensnare = null
+        let gg_trg_Autocast_Erotic = null
+        let gg_trg_Autocast_slow = null
+        let gg_trg_TP = null
+        let gg_trg_allow = null
+        let gg_trg_disallow = null
+        let gg_trg_zoom = null
+        let gg_trg_fuckoff_NC = null
+        let gg_trg_ccol = null
+        let gg_trg_give_Kopieren = null
+        let gg_trg_give_all = null
+        let gg_trg_autodeposit = null
+        let gg_trg_birdeye = null
+        let gg_trg_da = null
+        let gg_trg_wa = null
+        let gg_trg_wa_destroy_timer = null
+        let gg_trg_sa = null
+        let gg_trg_showboard = null
+        let gg_trg_special = null
+        let gg_trg_recreateboard = null
+        let gg_trg_nosfx_ein = null
+        let gg_trg_nosfx_aus = null
+        let gg_trg_color_und_colorall = null
+        let gg_trg_black_Kopieren = null
+        let gg_trg_ghost_Kopieren = null
+        let gg_trg_uncolor = null
+        let gg_trg_code = null
+        let gg_trg_code_end = null
+        let gg_trg_Host = null
+        let gg_trg_diff = null
+        let gg_trg_SP1 = null
+        let gg_trg_SP2 = null
+        let gg_trg_SP3 = null
+        let gg_trg_SP4 = null
+        let gg_trg_SP5 = null
+        let gg_trg_SP6 = null
+        let gg_trg_SP7 = null
+        let gg_trg_SP8 = null
+        let gg_trg_SP9 = null
+        let gg_trg_SP10 = null
+        let gg_trg_SP11 = null
+        let gg_trg_SP12 = null
+        let gg_trg_SP13 = null
+        let gg_trg_SP14 = null
+        let gg_trg_SP15 = null
+        let gg_trg_SP17 = null
+        let gg_trg_SP18 = null
+        let gg_trg_SP19 = null
+        let gg_trg_SP20 = null
+        let gg_trg_SP21 = null
+        let gg_trg_SP22 = null
+        let gg_trg_SP23 = null
+        let gg_trg_SP24 = null
+        let gg_trg_SP25 = null
+        let gg_trg_SP27 = null
+        let gg_trg_SP28 = null
+        let gg_trg_SP29 = null
+        let gg_trg_Stop = null
+        let gg_trg_XP_Add_und_Test = null
+        let gg_trg_Freischalten = null
+        let gg_trg_Fixe_Tabellen = null
+        let gg_trg_Variable_Tabellen = null
+        let gg_trg_Variable_Tabellen_1k = null
+        let gg_trg_SN_Encoder = null
+        let gg_trg_Encoder_Game = null
+        let gg_trg_Decoder_V2_Teil1 = null
+        let gg_trg_Decoder_V3_Teil1 = null
+        let gg_trg_Decoder_V5_Teil1 = null
+        let gg_trg_Decoder_V5_Teil2 = null
+        let gg_trg_Decoder_V6_Teil1 = null
+        let gg_trg_Decoder_V6_Teil2 = null
+        let gg_trg_Decoder_V6_Teil1_1k = null
+        let gg_trg_Decoder_V6_Teil2_1k = null
+        let gg_trg_Encoder = null
+        let gg_trg_mp_hero = null
+        let gg_trg_Startup_Oben_Links = null
+        let gg_trg_Startup_Oben_Rechts = null
+        let gg_trg_Startup_Mitte_Links = null
+        let gg_trg_Startup_Mitte_Rechts = null
+        let gg_trg_Startup_Unten_Links = null
+        let gg_trg_Startup_Unten_Rechts = null
+        let gg_trg_Normal_moving = null
+        let gg_trg_Mitte_Links_Oben = null
+        let gg_trg_Mitte_Links_Unten = null
+        let gg_trg_Teiler_Links = null
+        let gg_trg_Mitte_Links_MitteU = null
+        let gg_trg_Mitte_Links_MitteD = null
+        let gg_trg_Mitte_Links_Tele = null
+        let gg_trg_Mitte_Rechts_Oben = null
+        let gg_trg_Mitte_Rechts_Unten = null
+        let gg_trg_Teiler_Rechts = null
+        let gg_trg_Mitte_Rechts_MitteU = null
+        let gg_trg_Mitte_Rechts_MitteD = null
+        let gg_trg_Mitte_Rechts_Tele = null
+        let gg_trg_Links_und_Rechts_zu_Mitte = null
+        let gg_trg_M_zu_Ende = null
+        let gg_trg_Ende = null
+        let gg_trg_Entfernen = null
+        let gg_trg_Kollison_AUS_Allgemein = null
+        let gg_trg_Kollision_AN1 = null
+        let gg_trg_Kollision_AN2 = null
+        let gg_trg_Kollision_AN3 = null
+        let gg_trg_Kollision_AN4 = null
+        let gg_trg_Kollision_AN5 = null
+        let gg_trg_Kollision_AN6 = null
+        let gg_trg_Kollision_AN7 = null
+        let gg_trg_Kollision_AN8 = null
+        let gg_trg_Kollision_AN9 = null
+        let gg_trg_Kollision_AN10 = null
+        let gg_trg_Kollision_AN11 = null
+        let gg_trg_D1 = null
+        let gg_trg_D2 = null
+        let gg_trg_D3 = null
+        let gg_trg_D4 = null
+        let gg_trg_Seite = null
+        let gg_trg_Seite_2 = null
+        let gg_trg_BRot = null
+        let gg_trg_BBlau = null
+        let gg_trg_BTeal = null
+        let gg_trg_BLila = null
+        let gg_trg_BGelb = null
+        let gg_trg_BOrange = null
+        let gg_trg_BGruen = null
+        let gg_trg_BPink = null
+        let gg_trg_BGrau = null
+        let gg_trg_BHellblau = null
+        let gg_trg_BDunkelgruen = null
+        let gg_trg_Block_und_Stuck = null
+        let gg_trg_Blink_NC = null
+        let gg_trg_Blink_Berechnen = null
+        let gg_trg_Kickchooser = null
+        let gg_trg_KickExec = null
+        let gg_trg_KickExecAbbruch = null
+        let gg_trg_Spielmodus = null
+        let gg_trg_Standard_Group = null
+        let gg_trg_Standard_Line = null
+        let gg_trg_Power = null
+        let gg_trg_Kill = null
+        let gg_trg_Auge_um_Auge = null
+        let gg_trg_Massaker = null
+        let gg_trg_Submodus = null
+        let gg_trg_Submodus_ASchliessen = null
+        let gg_trg_Geldteilen = null
+        let gg_trg_Ohne_XP = null
+        let gg_trg_Jede_Filiale_Einmal = null
+        let gg_trg_Zufaellige_Filialen = null
+        let gg_trg_Sandbox = null
+        let gg_trg_Submodus_Beenden = null
+        let gg_trg_Einstellung_und_Hinweise = null
+        let gg_trg_Schwierigkeit = null
+        let gg_trg_Sehr_Einfach = null
+        let gg_trg_Einfach = null
+        let gg_trg_Normal = null
+        let gg_trg_Schwer = null
+        let gg_trg_sehr_schwer = null
+        let gg_trg_Impossible = null
+        let gg_trg_MB_Setup = null
+        let gg_trg_Icons = null
+        let gg_trg_ReihenfolgeTemp = null
+        let gg_trg_ReihenfolgeTotal = null
+        let gg_trg_Kill_Counter = null
+        let gg_trg_Bonus_kills = null
+        let gg_trg_Killbalken = null
+        let gg_trg_Timer = null
+        let gg_trg_Lebensbalken = null
+        let gg_trg_Punktzahl = null
+        let gg_trg_LB_Laeuft = null
+        let gg_trg_LB_Warte = null
+        let gg_trg_Verlassen_Trigger = null
+        let gg_trg_Menu_oeffnen = null
+        let gg_trg_Leben = null
+        let gg_trg_Leben_Text = null
+        let gg_trg_Aufdecken = null
+        let gg_trg_Aufdecken_Text = null
+        let gg_trg_Winter = null
+        let gg_trg_Winter_Text = null
+        let gg_trg_Abbruch = null
+        let gg_unit_h059_0009 = null
+        let gg_unit_hdhw_0155 = null
+        function InitGlobals() {
+        let i = 0
+            udg_Monster_Amount = 0
+            udg_Lives = 40
+            udg_NoLivesLost = true
+            udg_Spielerzahl = 0
+            i = 0
+            while(true) {
+            if(i > 20) break
+                udg_colortext[i]= ""
+                i = i + 1
+            }
+            udg_Lebensbalken = ""
+            i = 0
+            while(true) {
+            if(i > 50) break
+                udg_VariVari[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_SpielerMultiPlatz[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 20) break
+                udg_auszeichnungen[i]= 1
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_Konto[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstBank[i]= false
+                i = i + 1
+            }
+            udg_Lives_Lost_Tmp = 0
+            i = 0
+            while(true) {
+            if(i > 15) break
+                udg_Kills_Rangliste[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 15) break
+                udg_Platzierung[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 15) break
+                udg_Platzierung_Reverse[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 15) break
+                udg_Towerzahl[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstKino[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 10) break
+                udg_DiffCounter[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstObi[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstBeate[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 25) break
+                udg_stopflags[i]= true
+                i = i + 1
+            }
+            udg_Level_Run = true
+            udg_handicap_pl12 = 80.00
+            udg_balance_gold_total = 0
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_ausz_egoist[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 15) break
+                udg_Spendenkonto_gtotal[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_ausz_unentschl[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_ausz_banker[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_ausz_wette[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstHM[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstTUI[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstA0K[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 55) break
+                udg_lp_tab[i]= 0
+                i = i + 1
+            }
+            udg_aok_killcounter = 0
+            udg_Lebensbalken_Counter = 0
+            i = 0
+            while(true) {
+            if(i > 6) break
+                udg_Items_Speicher[i]= null
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstIkea[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_TUI_Upgradegeld[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstPost[i]= false
+                i = i + 1
+            }
+            udg_Modus_STD_G = true
+            udg_Modus_STD_L = false
+            udg_Modus_KILL_Menge = 0
+            udg_creep_counter = 0
+            udg_KillsTemp_Total = 0
+            udg_Killbalken = ""
+            udg_Killbalken_Counter = 0
+            udg_Modus_MASSAKER = false
+            udg_Modus_KILL222 = false
+            udg_Kick = false
+            udg_floating_displayTMP = ""
+            udg_punkte_string = ""
+            udg_punkte = 0
+            udg_punkte_string_2 = ""
+            udg_punkte_pruefstring = ""
+            i = 0
+            while(true) {
+            if(i > 2) break
+                udg_punkte_spielerzahl[i]= 0
+                i = i + 1
+            }
+            udg_spiel_laeuft = false
+            udg_spezial_typ_wahl = 0
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstAldi[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstMediaMarkt[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstTanteEmma[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstPorsche[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstAral[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstMcD[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstCopyShop[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstGarten[i]= false
+                i = i + 1
+            }
+            udg_Modus_Auge = false
+            udg_anabolika_geld = 0
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstFitness[i]= false
+                i = i + 1
+            }
+            udg_goldstring = ""
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_goldamount_pp[i]= 0
+                i = i + 1
+            }
+            udg_time_total = ""
+            i = 0
+            while(true) {
+            if(i > 3) break
+                udg_timer_parts[i]= 0
+                i = i + 1
+            }
+            udg_unit_switch_1 = 0
+            udg_unit_switch_2 = 0
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp[i]= 0
+                i = i + 1
+            }
+            udg_xp_diff_faktor = 1.00
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_spielerlevel[i]= 10
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 40) break
+                udg_xp_scr1A[i]= ""
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 40) break
+                udg_xp_scr2A[i]= ""
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_encoded_sn1[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_encoded_sn2[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_encoded_sn3[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_encoded_cp1[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_encoded_cp2[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_encoded_cp3[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_encoded_cp4[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_encoded_code[i]= ""
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_entered_code[i]= ""
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_decoded_1[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_decoded_2[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_decoded_4[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_decoded_3[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_encoded_cp5[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_decoded_5[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_spielerlevel_tmp[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_retry[i]= 0
+                i = i + 1
+            }
+            udg_VariReal = 0
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_gold_multi_ppl[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstBI[i]= false
+                i = i + 1
+            }
+            udg_xp_keycode = 0
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_encoded_sn4_2[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 40) break
+                udg_xp_scr3N[i]= ""
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 40) break
+                udg_xp_scr1N1[i]= ""
+                i = i + 1
+            }
+            udg_Modus_PWR_NEW = false
+            udg_IstBoss = false
+            udg_sound = true
+            udg_Sub_Geldteilen = false
+            udg_Sub_KXP = false
+            i = 0
+            while(true) {
+            if(i > 40) break
+                udg_xp_scr1N2[i]= ""
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 40) break
+                udg_xp_scr2N_KEY[i]= ""
+                i = i + 1
+            }
+            udg_Sub_UNIQUE = false
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_Typ_Std_pp[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_Typ_Pro_pp[i]= 0
+                i = i + 1
+            }
+            udg_geldteilen = 0
+            i = 0
+            while(true) {
+            if(i > 20) break
+                udg_KillsTemp[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 20) break
+                udg_KillsTotal[i]= 0
+                i = i + 1
+            }
+            udg_id_gezeigt = false
+            udg_version = ""
+            udg_Sub_AR = false
+            i = 0
+            while(true) {
+            if(i > 24) break
+                udg_xp_o_fake2[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 24) break
+                udg_xp_o3[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_encoded_sn2_2[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_autodeposit[i]= false
+                i = i + 1
+            }
+            udg_floating_counter_BI = 1
+            udg_floating_displayTMP_BI = ""
+            i = 0
+            while(true) {
+            if(i > 2000) break
+                udg_floating_unit_BI[i]= null
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_auswahl_getroffen[i]= false
+                i = i + 1
+            }
+            udg_aktuelles_level = 1
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_Gesamtwert[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_hauptgebaeude[i]= null
+                i = i + 1
+            }
+            udg_Monstertype_Selector = 1
+            udg_Diff_CorrMaster = 1.00
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_player_region[i]= null
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_color_ppl_red[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_color_ppl_blue[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_color_ppl_green[i]= 0
+                i = i + 1
+            }
+            udg_Gold_Amount = 185
+            udg_typ_air = false
+            udg_typ_boss = false
+            udg_typ_normal = false
+            udg_Diff_Autobalance = 1.00
+            udg_last_lptab = 0
+            udg_diff_min = 0.75
+            udg_diff_max = 999.00
+            i = 0
+            while(true) {
+            if(i > 5) break
+                udg_Diff_Autobalance_Speicher[i]= 1.00
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_gebiet_leer[i]= false
+                i = i + 1
+            }
+            udg_penalty = 0
+            udg_penalty_temp = 0
+            udg_defeat = false
+            i = 0
+            while(true) {
+            if(i > 12) break
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_camdistance[i]= 2500.00
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_teampunkte[i]= 0
+                i = i + 1
+            }
+            udg_spiel_ID = ""
+            udg_Lifes_Left = 0
+            udg_Lifes_Total = 0
+            udg_punkteanpassung = 0
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_filialnamen_ger[i]= ""
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_filialnamen_ger_PRO[i]= ""
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_spez_ger[i]= ""
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_xp_test[i]= 0
+                i = i + 1
+            }
+            udg_alarm = 0
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_fever[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_LC[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_birdeye[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 10) break
+                udg_VariVari2[i]= 0
+                i = i + 1
+            }
+            udg_nosfx = false
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_Spezialtyp[i]= false
+                i = i + 1
+            }
+            udg_floating_gold = 0
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_Upgradegeld[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_worth_flag[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_rabatt[i]= 0
+                i = i + 1
+            }
+            udg_temp_string_1 = ""
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_interpunktieren[i]= ""
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_Drones[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_VariVari_SS[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_IstWeap[i]= false
+                i = i + 1
+            }
+            udg_enter_debug = false
+            udg_tbool = false
+            udg_tempint = 0
+            udg_noobie_mode = false
+            udg_Sub_NoSpecial = false
+            udg_vari_string = ""
+            udg_vari_bool = false
+            udg_Lifes_Lost = 0
+            udg_Lifes_Lost_Tmp = 0
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_creeps_k_m[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_KillsTotal_Power[i]= 0
+                i = i + 1
+            }
+            udg_Sub_Sandbox = false
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_leftround[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_allow[i]= true
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_ausz_bau[i]= 0
+                i = i + 1
+            }
+            udg_DiffSmart = 0
+            udg_DiffCounterSmart = 0
+            udg_diff_add = 0.02
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_ausz_autobalance[i]= 100
+                i = i + 1
+            }
+            udg_diff_adjust = 0
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_Playerbusy[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_ausz_leben[i]= 0
+                i = i + 1
+            }
+            udg_ausz_bank = 0
+            udg_punktemultiplikator = 0
+            udg_PlayerPunkteMultiplikator = 0
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_securtiy_decoded[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_clear[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_encoded_cp6[i]= 0
+                i = i + 1
+            }
+            udg_tempint3 = 0
+            udg_temp_string_3 = ""
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_xp_flag[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_xp_decoded_6[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_xp_scrMP[i]= ""
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_ueberweisung_laeuft[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                i = i + 1
+            }
+            udg_vari_string2 = ""
+            i = 0
+            while(true) {
+            if(i > 12) break
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_RamboSouls[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_MyMulti[i]= 1.00
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_IstEbay[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_CanSell[i]= true
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_RundenGold[i]= 0
+                i = i + 1
+            }
+            udg_RestDiff = 0
+            udg_LPtoAdd = 0
+            udg_anabolik = false
+            i = 0
+            while(true) {
+            if(i > 12) break
+                i = i + 1
+            }
+            udg_goldBonusRunde = 0
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_ObiKills[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_VariReal2[i]= 0
+                i = i + 1
+            }
+            udg_treal = 0
+            udg_Maxlife = 0
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_IstSpiel[i]= false
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_LeaverMoney[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_xp_decoded_7[i]= 0
+                i = i + 1
+            }
+            i = 0
+            while(true) {
+            if(i > 12) break
+                udg_xp_encoded_cp7[i]= 0
+                i = i + 1
+            }
+            udg_GradEinheit = 0
+            udg_tmp = 0
+            udg_tmpBool = false
+            udg_tmp2 = 0
+            udg_TransferRate = 0
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_Transferd[i]= 0
+                i = i + 1
+            }
+            udg_Verbunden = 0
+            udg_tmp_Kopieren = 0
+            udg_tmp2_Kopieren = 0
+            udg_TransferRate_Kopieren = 0
+            i = 0
+            while(true) {
+            if(i > 1) break
+                udg_Transferd_Kopieren[i]= 0
+                i = i + 1
+            }
+            udg_Manadiffer = 0
+            i = 0
+            while(true) {
+            if(i > 11) break
+                udg_MPja[i]= false
+                i = i + 1
+            }
+            udg_Wassertankrest = 0
+        }
+        function Trig_Fixe_Tabellen_Actions() {
+            udg_temp_string_3 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            bj_forLoopAIndex = 1
+            bj_forLoopAIndexEnd = StringLength(udg_temp_string_3)
+            while(true) {
+            if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+                udg_xp_scr1A[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
+                bj_forLoopAIndex = bj_forLoopAIndex + 1
+            }
+            udg_temp_string_3 = "YPNRUH6E0ZB4Q-X9ALIO35TWSV2J_MKGD78C"
+            bj_forLoopAIndex = 1
+            bj_forLoopAIndexEnd = StringLength(udg_temp_string_3)
+            while(true) {
+            if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+                udg_xp_scr2A[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
+                bj_forLoopAIndex = bj_forLoopAIndex + 1
+            }
+            udg_temp_string_3 = "%EB4Q-XRJK0ZSD7U9AL8W_CO35TMYPIGH6V2N$)(+][*"
+            bj_forLoopAIndex = 1
+            bj_forLoopAIndexEnd = StringLength(udg_temp_string_3)
+            while(true) {
+            if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+                udg_xp_scr2N_KEY[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
+                bj_forLoopAIndex = bj_forLoopAIndex + 1
+            }
+            udg_temp_string_3 = "WYGZQALBTPEFHVJDCMXSNORUKI"
+            bj_forLoopAIndex = 1
+            bj_forLoopAIndexEnd = StringLength(udg_temp_string_3)
+            while(true) {
+            if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+                udg_xp_scr1N1[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
+                bj_forLoopAIndex = bj_forLoopAIndex + 1
+            }
+            udg_temp_string_3 = "0_:-135962!().847[]"
+            bj_forLoopAIndex = 1
+            bj_forLoopAIndexEnd = StringLength(udg_temp_string_3)
+            while(true) {
+            if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+                udg_xp_scr1N2[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
+                bj_forLoopAIndex = bj_forLoopAIndex + 1
+            }
+            udg_temp_string_3 = "L6MNO7PQ4RST5UVWXYZAB0823CDEFG9HIJK1_"
+            bj_forLoopAIndex = 1
+            bj_forLoopAIndexEnd = StringLength(udg_temp_string_3)
+            while(true) {
+            if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+                udg_xp_scrMP[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
+                bj_forLoopAIndex = bj_forLoopAIndex + 1
+            }
+        }
+        function Trig_Encoder_Func001A() {
+            if(Trig_Encoder_Func001Func001C()) {
+                udg_VariVari2[7]= GetConvertedPlayerId(GetEnumPlayer())
+                if(Trig_Encoder_Func001Func001Func026C()) {
+                    udg_xp_encoded_sn1[GetConvertedPlayerId(ConvertedPlayer(udg_VariVari2[7]))]= 0
+                } else {
+                }
+                if(Trig_Encoder_Func001Func001Func028C()) {
+                    udg_xp_clear[1]= 0
+                    udg_xp_clear[2]= 0
+                    udg_xp_clear[3]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[7]]), 1, 1))
+                    udg_xp_clear[4]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[7]]), 2, 2))
+                } else {
+                }
+                if(Trig_Encoder_Func001Func001Func029C()) {
+                    udg_xp_clear[1]= 0
+                    udg_xp_clear[2]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[7]]), 1, 1))
+                    udg_xp_clear[3]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[7]]), 2, 2))
+                    udg_xp_clear[4]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[7]]), 3, 3))
+                } else {
+                }
+                if(Trig_Encoder_Func001Func001Func030C()) {
+                    udg_xp_clear[1]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[7]]), 1, 1))
+                    udg_xp_clear[2]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[7]]), 2, 2))
+                    udg_xp_clear[3]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[7]]), 3, 3))
+                    udg_xp_clear[4]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[7]]), 4, 4))
+                } else {
+                }
+                udg_xp_encoded_cp1[udg_VariVari2[7]]=((udg_xp_clear[1]* 2)+(udg_xp_clear[2]+(udg_xp_clear[3]+(udg_xp_clear[4]+ 0))))
+                udg_xp_encoded_cp2[udg_VariVari2[7]]=(StringLength(GetPlayerName(ConvertedPlayer(udg_VariVari2[7])))+ udg_xp_clear[3])
+                udg_xp_encoded_cp3[udg_VariVari2[7]]=(udg_xp_encoded_sn2_2[udg_VariVari2[7]]+(udg_xp_clear[2]+ 1))
+                udg_xp_encoded_cp4[udg_VariVari2[7]]=(udg_xp_encoded_sn4_2[udg_VariVari2[7]]+(udg_xp_clear[1]+ 2))
+                if(Trig_Encoder_Func001Func001Func036C()) {
+                    udg_xp_encoded_cp5[udg_VariVari2[7]]=(udg_xp_clear[4]+ 25)
+                } else {
+                    udg_xp_encoded_cp5[udg_VariVari2[7]]=(udg_xp_clear[4]+ 26)
+                }
+                if(Trig_Encoder_Func001Func001Func037C()) {
+                    udg_xp_encoded_cp6[udg_VariVari2[7]]= 1
+                } else {
+                    udg_xp_encoded_cp6[udg_VariVari2[7]]=((udg_xp_spielerlevel[udg_VariVari2[7]]/ 350)+(udg_xp_clear[2]+ 0))
+                }
+                if(Trig_Encoder_Func001Func001Func039C()) {
+                    udg_xp_encoded_cp1[udg_VariVari2[7]]=(udg_xp_encoded_cp1[udg_VariVari2[7]]-1)
+                } else {
+                }
+                udg_xp_keycode =(udg_xp_encoded_cp1[udg_VariVari2[7]]+ 0)
+                Trig_Variable_Tabellen_Actions()
+                udg_xp_encoded_code[udg_VariVari2[7]]= ""
+                udg_xp_encoded_code[udg_VariVari2[7]]=(udg_xp_scr2N_KEY[udg_xp_encoded_cp1[udg_VariVari2[7]]]+(udg_xp_scr3N[udg_xp_encoded_cp2[udg_VariVari2[7]]]+(udg_xp_scr3N[udg_xp_encoded_cp3[udg_VariVari2[7]]]+(udg_xp_scr3N[udg_xp_encoded_cp4[udg_VariVari2[7]]]+(udg_xp_scr3N[udg_xp_encoded_cp5[udg_VariVari2[7]]]+ udg_xp_scr3N[udg_xp_encoded_cp6[udg_VariVari2[7]]])))))
+            } else {
+                udg_VariVari2[10]= GetConvertedPlayerId(GetEnumPlayer())
+                udg_xp_spielerlevel[udg_VariVari2[10]]=(udg_xp_spielerlevel[udg_VariVari2[10]]-9003)
+                if(Trig_Encoder_Func001Func001Func003C()) {
+                    udg_xp_encoded_sn1[GetConvertedPlayerId(ConvertedPlayer(udg_VariVari2[10]))]= 0
+                } else {
+                }
+                if(Trig_Encoder_Func001Func001Func005C()) {
+                    udg_xp_clear[1]= 0
+                    udg_xp_clear[2]= 0
+                    udg_xp_clear[3]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[10]]), 1, 1))
+                    udg_xp_clear[4]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[10]]), 2, 2))
+                } else {
+                }
+                if(Trig_Encoder_Func001Func001Func006C()) {
+                    udg_xp_clear[1]= 0
+                    udg_xp_clear[2]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[10]]), 1, 1))
+                    udg_xp_clear[3]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[10]]), 2, 2))
+                    udg_xp_clear[4]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[10]]), 3, 3))
+                } else {
+                }
+                if(Trig_Encoder_Func001Func001Func007C()) {
+                    udg_xp_clear[1]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[10]]), 1, 1))
+                    udg_xp_clear[2]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[10]]), 2, 2))
+                    udg_xp_clear[3]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[10]]), 3, 3))
+                    udg_xp_clear[4]= S2I(SubStringBJ(I2S(udg_xp_spielerlevel[udg_VariVari2[10]]), 4, 4))
+                } else {
+                }
+                udg_xp_encoded_cp1[udg_VariVari2[10]]=((udg_xp_clear[1]* 2)+(udg_xp_clear[2]+(udg_xp_clear[3]+(udg_xp_clear[4]+ 0))))
+                udg_xp_encoded_cp2[udg_VariVari2[10]]=(StringLength(GetPlayerName(ConvertedPlayer(udg_VariVari2[10])))+ udg_xp_clear[3])
+                udg_xp_encoded_cp3[udg_VariVari2[10]]=(udg_xp_encoded_sn2_2[udg_VariVari2[10]]+(udg_xp_clear[2]+ 1))
+                udg_xp_encoded_cp4[udg_VariVari2[10]]=(udg_xp_encoded_sn4_2[udg_VariVari2[10]]+(udg_xp_clear[1]+ 2))
+                udg_xp_encoded_cp7[udg_VariVari2[10]]=(udg_xp_encoded_sn4_2[udg_VariVari2[10]]+(udg_xp_clear[1]+ 1))
+                if(Trig_Encoder_Func001Func001Func014C()) {
+                    udg_xp_encoded_cp5[udg_VariVari2[10]]=(udg_xp_clear[4]+ 25)
+                } else {
+                    udg_xp_encoded_cp5[udg_VariVari2[10]]=(udg_xp_clear[4]+ 26)
+                }
+                if(Trig_Encoder_Func001Func001Func015C()) {
+                    udg_xp_encoded_cp5[udg_VariVari2[10]]=(udg_xp_clear[4]+ 24)
+                } else {
+                    DoNothing()
+                }
+                if(Trig_Encoder_Func001Func001Func016C()) {
+                    udg_xp_encoded_cp6[udg_VariVari2[10]]= 1
+                } else {
+                    udg_xp_encoded_cp6[udg_VariVari2[10]]=((udg_xp_spielerlevel[udg_VariVari2[10]]/ 350)+(udg_xp_clear[2]+ 0))
+                }
+                if(Trig_Encoder_Func001Func001Func018C()) {
+                    udg_xp_encoded_cp1[udg_VariVari2[10]]=(udg_xp_encoded_cp1[udg_VariVari2[10]]-1)
+                } else {
+                }
+                udg_xp_keycode =(udg_xp_encoded_cp1[udg_VariVari2[10]]+ 0)
+                Trig_Variable_Tabellen_1k_Actions()
+                udg_xp_encoded_code[udg_VariVari2[10]]= ""
+                udg_xp_encoded_code[udg_VariVari2[10]]=(udg_xp_scr2N_KEY[udg_xp_encoded_cp1[udg_VariVari2[10]]]+(udg_xp_scr3N[udg_xp_encoded_cp2[udg_VariVari2[10]]]+(udg_xp_scr3N[udg_xp_encoded_cp3[udg_VariVari2[10]]]+(udg_xp_scr3N[udg_xp_encoded_cp4[udg_VariVari2[10]]]+(udg_xp_scr3N[udg_xp_encoded_cp5[udg_VariVari2[10]]]+(udg_xp_scr3N[udg_xp_encoded_cp6[udg_VariVari2[10]]]+ udg_xp_scr3N[udg_xp_encoded_cp7[udg_VariVari2[10]]]))))))
+                udg_xp_spielerlevel[udg_VariVari2[10]]=(udg_xp_spielerlevel[udg_VariVari2[10]]+ 9003)
+            }
+        }
+        function Trig_Encoder_Game_Actions() {
+            Trig_Encoder_Game_Func001A()
+        }
+        function Trig_SN_Encoder_Actions() {
+            Trig_SN_Encoder_Func002A()
+            Trig_SN_Encoder_Func004A()
+        }
+        function Trig_Encoder_Func001Func001C() {
+            if(!(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]< 9999)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Func001Func001Func026C() {
+            if(!(udg_xp_spielerlevel[GetConvertedPlayerId(ConvertedPlayer(udg_VariVari2[7]))]>(udg_xp_test[GetConvertedPlayerId(ConvertedPlayer(udg_VariVari2[7]))]+ 250))) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Func001Func001Func028C() {
+            if(!(udg_xp_spielerlevel[GetConvertedPlayerId(ConvertedPlayer(udg_VariVari2[7]))]<= 99)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Func001Func001Func029C() {
+            if(!(udg_xp_spielerlevel[GetConvertedPlayerId(ConvertedPlayer(udg_VariVari2[7]))]> 99)) {
+                return false
+            }
+            if(!(udg_xp_spielerlevel[GetConvertedPlayerId(ConvertedPlayer(udg_VariVari2[7]))]<= 999)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Func001Func001Func030C() {
+            if(!(udg_xp_spielerlevel[GetConvertedPlayerId(ConvertedPlayer(udg_VariVari2[7]))]> 999)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Func001Func001Func036C() {
+            if(!(udg_xp_spielerlevel[udg_VariVari2[7]]> 8999)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Func001Func001Func037C() {
+            if(!(udg_xp_spielerlevel[udg_VariVari2[7]]< 100)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Func001Func001Func039C() {
+            if(!((udg_xp_test[udg_VariVari2[7]]+ 250)< udg_xp_spielerlevel[udg_VariVari2[7]])) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Actions() {
+            if(Trig_Variable_Tabellen_Func002C()) {
+                udg_temp_string_3 = "X9ALIO35TWSV2J6_MKG$%D78CYPNRUHE0ZB4Q-"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func003C()) {
+                udg_temp_string_3 = "0ZB4Q-H5WTSV2J6E_MKGDX9ALIO3$%78CYPNRU"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func004C()) {
+                udg_temp_string_3 = "TSV2J6E0$%W_MKGD78CYPNRUZB4Q-HX9ALIO35"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func005C()) {
+                udg_temp_string_3 = "QMKGD78CYHX9ALIO35WPNRU-_$%TSV2J6E0ZB4"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func006C()) {
+                udg_temp_string_3 = "NRU-HX9ALIO35W_TSV2J6EMK$%GD78CYP0ZB4Q"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func007C()) {
+                udg_temp_string_3 = "PNRUTSV2J6E0Z$%B4QMKGD78CY-HX9ALIO35W_"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func008C()) {
+                udg_temp_string_3 = "35W_PNRU-HX9SV2J6E0ZB4QMKGD78CYALIOT$%"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func009C()) {
+                udg_temp_string_3 = "$%9ALIOTSV2J6E0HXZB4QMKGD78CY35W_PNRU-"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func010C()) {
+                udg_temp_string_3 = "6RU-9ALIOTSV2JHXZB4QMKG$%D78CYE035W_PN"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func011C()) {
+                udg_temp_string_3 = "8CYPNRU9ALIO35TWS$%V2J6E0ZB4Q-HX_MKGD7"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func013C()) {
+                udg_temp_string_3 = "HX_MKGD79ALI8CYP$%NRUOE0ZB4Q-35TWSV2J6"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func014C()) {
+                udg_temp_string_3 = "YPN$%RUO3GD79ALI8CWSV2J6E0ZB4Q-5THX_MK"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func015C()) {
+                udg_temp_string_3 = "GD79ANRUO35THX_MKSV2J6E0ZB4Q-LI$%8CWYP"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func016C()) {
+                udg_temp_string_3 = "79A$%LI8CWYPNRUO35THX_J6E0ZB4Q-GDMKSV2"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func017C()) {
+                udg_temp_string_3 = "O35THX79ALI_MKSV2J6E$%0ZB4Q-GD8CWYPNRU"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func018C()) {
+                udg_temp_string_3 = "YPNRUO35THX79A8CWLI_MKSVQ-GD2J6E$%0ZB4"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func019C()) {
+                udg_temp_string_3 = "2J6E0ZB4Q-YPNRUO3GD5THX79A8CWLI_MK$%SV"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func020C()) {
+                udg_temp_string_3 = "HX79A8CWLI5T_MKSV-YPNRUO3GD2J6E0ZB4$%Q"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func021C()) {
+                udg_temp_string_3 = "9A8$%CWHX7LI5B4Q-YPNRUO3GDT_MKSV2J6E0Z"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func022C()) {
+                udg_temp_string_3 = "KSV2J6E0ZB4Q_M-YPNRUO3GD9A8C$%WHX7LI5T"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func024C()) {
+                udg_temp_string_3 = "J6E0ZB$%4Q9A8CWX7LI5T_M-YPNRUO3GDHKSV2"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func025C()) {
+                udg_temp_string_3 = "9A8CWHK$%SV2X7LIUO3GD5T_MJ6E0ZB4Q-YPNR"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func026C()) {
+                udg_temp_string_3 = "X7LI5T9A8V2_MJ6E0ZB4Q-YPNRUO3GD$%CWHKS"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func027C()) {
+                udg_temp_string_3 = "$%8CWHKSV2_MJ6E0ZBI5T9AYPNRUO3GD4Q-X7L"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func028C()) {
+                udg_temp_string_3 = "MJ6E0ZB4$%Q-XW8CHKSV2_7LI5T9AUO3GDYPNR"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func029C()) {
+                udg_temp_string_3 = "ZB4Q-XW8C$%HKLI5T9AYPNRUO3GDSV2MJ6E0_7"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func030C()) {
+                udg_temp_string_3 = "KSV2W8CHLI5T9AYPNRUO3GDMJ6E0_7ZB4$%Q-X"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func031C()) {
+                udg_temp_string_3 = "MJ6E0_7ZB$%4Q-XKSV2W8CHNRUO3GDLI5T9AYP"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func032C()) {
+                udg_temp_string_3 = "Q-XKSV2W8CHLI5T9AYPNZB4O3GDRUMJ6$%E0_7"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func033C()) {
+                udg_temp_string_3 = "8$%CHLI5T9AYPNRUMQ-XKSV2WE0_7ZB4O3GDJ6"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func035C()) {
+                udg_temp_string_3 = "T9AYPNRUMQ8CWJ6E0_7$%ZB4O3GDHLI5-XKSV2"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func036C()) {
+                udg_temp_string_3 = "K$%SV2WJ6E0_7ZB4O3GDT9AYPNRUMQ8CHLI5-X"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func037C()) {
+                udg_temp_string_3 = "_KSV2WJ6E07ZB4Q8CH$%LI5-XO3GDT9AYPNRUM"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func038C()) {
+                udg_temp_string_3 = "E07ZB4O$%3GDT9A_KSV2MQ8CHLI5-XWJ6YPNRU"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func039C()) {
+                udg_temp_string_3 = "A_KSV2WJ6NRUMQ8CHLI5-XYE0$%7ZB4O3GDT9P"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func040C()) {
+                udg_temp_string_3 = "DT$%9PNRUMQ8CHLI5-XWJ6YEA_KSV207ZB4O3G"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func041C()) {
+                udg_temp_string_3 = "PN83GCT$J6DRUMQYEA_KB4O%9HLI5-SV207ZXW"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func042C()) {
+                udg_temp_string_3 = "J6YEA_KPZB4LI5-XWOUMDHSV207%9T$NR3GQ8C"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func043C()) {
+                udg_temp_string_3 = "WOU7%9T$NR3GQ8CJ6YEMDHSV20A_KPZB4LI5-X"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func044C()) {
+                udg_temp_string_3 = "EMKPZB4LI5-XWOU7%9T$DHSV20A_NR3GQ8CJ6Y"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func045C()) {
+                udg_temp_string_3 = "G5-XWOHSV20AQPZB4LI_8CJ6YNEMKR3U7%9T$D"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func046C()) {
+                udg_temp_string_3 = "7%9T$DHSVGQL28CJ6YEMKPZB40A_NR3I5-XWOU"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func047C()) {
+                udg_temp_string_3 = "XH40A_N283I5-CJ6YE%9T$DWMKPZBOU7VGQLSR"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func048C()) {
+                udg_temp_string_3 = "0A9TMN$BDW2CJ6YE%8KPXH4_GQLS3OU7VIZ5-R"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_Func049C()) {
+                udg_temp_string_3 = "7ZBXW6T9HJ0ARUYE$%SVPN4OL_2MQ8CK5-I3GD"
+            } else {
+            }
+            bj_forLoopAIndex = 1
+            bj_forLoopAIndexEnd = StringLength(udg_temp_string_3)
+            while(true) {
+            if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+                udg_xp_scr3N[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
+                bj_forLoopAIndex = bj_forLoopAIndex + 1
+            }
+        }
+        function Trig_Encoder_Func001Func001Func003C() {
+            if(!(udg_xp_spielerlevel[GetConvertedPlayerId(ConvertedPlayer(udg_VariVari2[10]))]>(udg_xp_test[GetConvertedPlayerId(ConvertedPlayer(udg_VariVari2[10]))]+ 250))) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Func001Func001Func005C() {
+            if(!(udg_xp_spielerlevel[GetConvertedPlayerId(ConvertedPlayer(udg_VariVari2[10]))]<= 99)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Func001Func001Func006C() {
+            if(!(udg_xp_spielerlevel[GetConvertedPlayerId(ConvertedPlayer(udg_VariVari2[10]))]> 99)) {
+                return false
+            }
+            if(!(udg_xp_spielerlevel[GetConvertedPlayerId(ConvertedPlayer(udg_VariVari2[10]))]<= 999)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Func001Func001Func007C() {
+            if(!(udg_xp_spielerlevel[GetConvertedPlayerId(ConvertedPlayer(udg_VariVari2[10]))]> 999)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Func001Func001Func014C() {
+            if(!(udg_xp_spielerlevel[udg_VariVari2[10]]> 8999)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Func001Func001Func015C() {
+            if(!(StringLength(udg_xp_entered_code[udg_VariVari2[10]])< 5)) {
+                return false
+            }
+            return true
+        }
+        function DoNothing() {
+        }
+        function Trig_Encoder_Func001Func001Func016C() {
+            if(!(udg_xp_spielerlevel[udg_VariVari2[10]]< 100)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Func001Func001Func018C() {
+            if(!((udg_xp_test[udg_VariVari2[10]]+ 250)< udg_xp_spielerlevel[udg_VariVari2[10]])) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Actions() {
+            if(Trig_Variable_Tabellen_1k_Func002C()) {
+                udg_temp_string_3 = "0ZBLIO3$%78CYPNRU4Q-H5WTSV2J6E_MKGDX9A"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func003C()) {
+                udg_temp_string_3 = "4Q-HX9ALIO35TSV2J6E0$%W_MKGD78CYPNRUZB"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func004C()) {
+                udg_temp_string_3 = "ZWIMDQON3J7F4XTKGVP2L0AH65BE9U%YR$CS18"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func005C()) {
+                udg_temp_string_3 = "V921ALQ7$FZR4TIODNW8U%P06CKH5YGMXBSEJ3"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func006C()) {
+                udg_temp_string_3 = "6DIR49%$UQL2ZX3O5SYKWNVMBATPFJ1GH80C7E"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func007C()) {
+                udg_temp_string_3 = "NRU-HX9ALIO35W_TSV2J6EMK$%GD78CYP0ZB4Q"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func008C()) {
+                udg_temp_string_3 = "PNRUTSV2J69ALIO35W_E0Z$%B4QMKGD78CY-HX"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func009C()) {
+                udg_temp_string_3 = "$%9ALIOTSV2J6E0HXZB4QMKGD78CY35W_PNRU-"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func010C()) {
+                udg_temp_string_3 = "6RU-9ALIOTSV2JHYE035W_PNXZB4QMKG$%D78C"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func011C()) {
+                udg_temp_string_3 = "HX_MKGD79ALI8CYP$%NRUOE0ZB4Q-35TWSV2J6"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func013C()) {
+                udg_temp_string_3 = "8CYPNRU9ALIO35TWS$%V2J6E0ZB4Q-HX_MKGD7"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func014C()) {
+                udg_temp_string_3 = "PWL5HRGVZDU0$QY8MTSJ9B4NFCE21A%37XK6IO"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func015C()) {
+                udg_temp_string_3 = "YPN$%RUO3GD79ALI8CWSV2J6E0ZB4Q-5THX_MK"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func016C()) {
+                udg_temp_string_3 = "2J6E0ZB4Q-YPNRUO3GD5THX79A8CWLI_MK$%SV"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func017C()) {
+                udg_temp_string_3 = "YPNRUO35THX79A8CWLI_MKSVQ-GD2J6E$%0ZB4"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func018C()) {
+                udg_temp_string_3 = "79A$%LI8CWYPNRUO35THX_J6E0ZB4Q-GDMKSV2"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func019C()) {
+                udg_temp_string_3 = "O35THX79ALI_MKSV2J6E$%0ZB4Q-GD8CWYPNRU"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func020C()) {
+                udg_temp_string_3 = "$PHM0A6IOQDB9CL7R%4X3ZK1STFEV5JUGWYN82"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func021C()) {
+                udg_temp_string_3 = "9A8CWHK$%S-YPNRV2X7LIUO3GD5T_MJ6E0ZB4Q"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func022C()) {
+                udg_temp_string_3 = "HX79A8CWLI5T_MKSV-YPNRUO3GD2J6E0ZB4$%Q"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func024C()) {
+                udg_temp_string_3 = "9A8$%CWHX7LI5B4Q-YPNRUO3GDT_MKSV2J6E0Z"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func025C()) {
+                udg_temp_string_3 = "J6E0ZB$%4Q9A8CWX7LI5T_M-YPNRUO3GDHKSV2"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func026C()) {
+                udg_temp_string_3 = "0B592DSGHKCA31PNI$U6XZMOQ%4LRVJ8TEYWF7"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func027C()) {
+                udg_temp_string_3 = "YPNRUO3GD$%CWHKSX7LI5T9A8V2_MJ6E0ZB4Q-"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func028C()) {
+                udg_temp_string_3 = "XW8CHKSV2_7LI5T9AUO3GDYPNRMJ6E0ZB4$%Q-"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func029C()) {
+                udg_temp_string_3 = "KSV2W8CHLI5T9AYPNRUO3GDMJ6E0_7ZB4$%Q-X"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func030C()) {
+                udg_temp_string_3 = "3CYMR$Z7EK1PNT68JOLQ%B409XHVG2IASWU5DF"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func031C()) {
+                udg_temp_string_3 = "AJ9ZDQSCVY3R28W5IU%4TM06GLNOKP7$EBF1XH"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func032C()) {
+                udg_temp_string_3 = "_KSV2WJ6E07ZB4Q8CH$%LI5-XO3GDT9AYPNRUM"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func033C()) {
+                udg_temp_string_3 = "K$%SV2WJ6E0_7ZB4O3GDT9APNRUMQ8CHLI5-XY"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func035C()) {
+                udg_temp_string_3 = "8$%CHLI5T9AYPNRUMQ-XKSV2WE0_7ZB4O3GDJ6"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func036C()) {
+                udg_temp_string_3 = "T9AYPNRUMQ8CWJ6E0_7$%ZB4O3GDHLI5-XKSV2"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func037C()) {
+                udg_temp_string_3 = "E07ZB4O$%3GDT9A_KSV2MQ8CHLI5-XWJ6YPNRU"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func038C()) {
+                udg_temp_string_3 = "Q-XKSV2WRUMJ6$%E0_78CHLI5T9AYPNZB4O3GD"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func039C()) {
+                udg_temp_string_3 = "DT$%9PNRUMQ8CHLI5-XWJ6YEA_KSV207ZB4O3G"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func040C()) {
+                udg_temp_string_3 = "DRU3XIWQGF%14KC$PZ7YJTS0N69MLEBVO5A8H2"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func041C()) {
+                udg_temp_string_3 = "PN83GCT$J6DRUMQYEA_KB4O%9HLI5-SV207ZXW"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func042C()) {
+                udg_temp_string_3 = "A_KSV2WJ6NRUMQ8CHLI5-XYE0$%7ZB4O3GDT9P"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func043C()) {
+                udg_temp_string_3 = "EMKJ6YPZB4LI5-XWOU7%9T$DHSV20A_NR3GQ8C"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func044C()) {
+                udg_temp_string_3 = "YEMDHSV20A_KPZB4LI5-XWOU7%9T$NR3GQ8CJ6"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func045C()) {
+                udg_temp_string_3 = "NAY1SGFZQ6IXWHV20E93LCMT5%O7BDRUP$84KJ"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func046C()) {
+                udg_temp_string_3 = "7ZBXW6T9HJ0ARUYE$%SVPN4OL_2MQ8CK5-I3GD"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func047C()) {
+                udg_temp_string_3 = "3U7%9T$DG5-XWOHSV20AQPZB4LI_8CJ6YNEMKR"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func048C()) {
+                udg_temp_string_3 = "0A9TMN$BDW2CJ6YE%8KPXH4_GQLS3OU7VIZ5-R"
+            } else {
+            }
+            if(Trig_Variable_Tabellen_1k_Func049C()) {
+                udg_temp_string_3 = "XH40A_N283I5-CJ6YE%9T$DWMKPZBOU7VGQLSR"
+            } else {
+            }
+            bj_forLoopAIndex = 1
+            bj_forLoopAIndexEnd = StringLength(udg_temp_string_3)
+            while(true) {
+            if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+                udg_xp_scr3N[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
+                bj_forLoopAIndex = bj_forLoopAIndex + 1
+            }
+        }
+        function Trig_Encoder_Game_Func001A() {
+            if(Trig_Encoder_Game_Func001Func001C()) {
+                Trig_Encoder_Game_Func001Func001Func002A()
+            } else {
+                Trig_Encoder_Game_Func001Func001Func001A()
+            }
+        }
+        function Trig_SN_Encoder_Func002A() {
+            bj_forLoopAIndex = 1
+            bj_forLoopAIndexEnd = 26
+            while(true) {
+            if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+                if(Trig_SN_Encoder_Func002Func002Func002C()) {
+                    udg_xp_encoded_sn1[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
+                } else {
+                }
+                if(Trig_SN_Encoder_Func002Func002Func003C()) {
+                    udg_xp_encoded_sn2[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
+                } else {
+                }
+                if(Trig_SN_Encoder_Func002Func002Func004C()) {
+                    udg_xp_encoded_sn3[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
+                } else {
+                }
+                bj_forLoopAIndex = bj_forLoopAIndex + 1
+            }
+            if(Trig_SN_Encoder_Func002Func004C()) {
+                udg_xp_encoded_sn1[GetConvertedPlayerId(GetEnumPlayer())]= 1
+            } else {
+            }
+            if(Trig_SN_Encoder_Func002Func005C()) {
+                udg_xp_encoded_sn2[GetConvertedPlayerId(GetEnumPlayer())]= 2
+            } else {
+            }
+            if(Trig_SN_Encoder_Func002Func006C()) {
+                udg_xp_encoded_sn3[GetConvertedPlayerId(GetEnumPlayer())]= 3
+            } else {
+            }
+        }
+        function Trig_SN_Encoder_Func004A() {
+            bj_forLoopAIndex = 1
+            bj_forLoopAIndexEnd = 26
+            while(true) {
+            if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+                if(Trig_SN_Encoder_Func004Func003Func002C()) {
+                    udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
+                } else {
+                }
+                if(Trig_SN_Encoder_Func004Func003Func004C()) {
+                    udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
+                    if(Trig_SN_Encoder_Func004Func003Func004Func003C()) {
+                        udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+ 1)
+                    } else {
+                    }
+                } else {
+                }
+                bj_forLoopAIndex = bj_forLoopAIndex + 1
+            }
+            bj_forLoopAIndex = 1
+            bj_forLoopAIndexEnd = 17
+            while(true) {
+            if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+                if(Trig_SN_Encoder_Func004Func005Func002C()) {
+                    udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
+                } else {
+                }
+                if(Trig_SN_Encoder_Func004Func005Func004C()) {
+                    udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
+                } else {
+                }
+                bj_forLoopAIndex = bj_forLoopAIndex + 1
+            }
+            if(Trig_SN_Encoder_Func004Func007C()) {
+                udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]= 2
+            } else {
+            }
+            if(Trig_SN_Encoder_Func004Func008C()) {
+                udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]= 4
+            } else {
+            }
+        }
+        function Trig_Variable_Tabellen_Func002C() {
+            if(!(udg_xp_keycode == 1)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func003C() {
+            if(!(udg_xp_keycode == 2)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func004C() {
+            if(!(udg_xp_keycode == 3)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func005C() {
+            if(!(udg_xp_keycode == 4)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func006C() {
+            if(!(udg_xp_keycode == 5)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func007C() {
+            if(!(udg_xp_keycode == 6)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func008C() {
+            if(!(udg_xp_keycode == 7)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func009C() {
+            if(!(udg_xp_keycode == 8)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func010C() {
+            if(!(udg_xp_keycode == 9)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func011C() {
+            if(!(udg_xp_keycode == 10)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func013C() {
+            if(!(udg_xp_keycode == 11)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func014C() {
+            if(!(udg_xp_keycode == 12)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func015C() {
+            if(!(udg_xp_keycode == 13)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func016C() {
+            if(!(udg_xp_keycode == 14)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func017C() {
+            if(!(udg_xp_keycode == 15)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func018C() {
+            if(!(udg_xp_keycode == 16)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func019C() {
+            if(!(udg_xp_keycode == 17)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func020C() {
+            if(!(udg_xp_keycode == 18)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func021C() {
+            if(!(udg_xp_keycode == 19)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func022C() {
+            if(!(udg_xp_keycode == 20)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func024C() {
+            if(!(udg_xp_keycode == 21)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func025C() {
+            if(!(udg_xp_keycode == 22)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func026C() {
+            if(!(udg_xp_keycode == 23)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func027C() {
+            if(!(udg_xp_keycode == 24)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func028C() {
+            if(!(udg_xp_keycode == 25)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func029C() {
+            if(!(udg_xp_keycode == 26)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func030C() {
+            if(!(udg_xp_keycode == 27)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func031C() {
+            if(!(udg_xp_keycode == 28)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func032C() {
+            if(!(udg_xp_keycode == 29)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func033C() {
+            if(!(udg_xp_keycode == 30)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func035C() {
+            if(!(udg_xp_keycode == 31)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func036C() {
+            if(!(udg_xp_keycode == 32)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func037C() {
+            if(!(udg_xp_keycode == 33)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func038C() {
+            if(!(udg_xp_keycode == 34)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func039C() {
+            if(!(udg_xp_keycode == 35)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func040C() {
+            if(!(udg_xp_keycode == 36)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func041C() {
+            if(!(udg_xp_keycode == 37)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func042C() {
+            if(!(udg_xp_keycode == 38)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func043C() {
+            if(!(udg_xp_keycode == 39)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func044C() {
+            if(!(udg_xp_keycode == 40)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func045C() {
+            if(!(udg_xp_keycode == 41)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func046C() {
+            if(!(udg_xp_keycode == 42)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func047C() {
+            if(!(udg_xp_keycode == 43)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func048C() {
+            if(!(udg_xp_keycode == 44)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_Func049C() {
+            if(!(udg_xp_keycode == 45)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func002C() {
+            if(!(udg_xp_keycode == 1)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func003C() {
+            if(!(udg_xp_keycode == 2)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func004C() {
+            if(!(udg_xp_keycode == 3)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func005C() {
+            if(!(udg_xp_keycode == 4)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func006C() {
+            if(!(udg_xp_keycode == 5)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func007C() {
+            if(!(udg_xp_keycode == 6)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func008C() {
+            if(!(udg_xp_keycode == 7)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func009C() {
+            if(!(udg_xp_keycode == 8)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func010C() {
+            if(!(udg_xp_keycode == 9)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func011C() {
+            if(!(udg_xp_keycode == 10)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func013C() {
+            if(!(udg_xp_keycode == 11)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func014C() {
+            if(!(udg_xp_keycode == 12)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func015C() {
+            if(!(udg_xp_keycode == 13)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func016C() {
+            if(!(udg_xp_keycode == 14)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func017C() {
+            if(!(udg_xp_keycode == 15)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func018C() {
+            if(!(udg_xp_keycode == 16)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func019C() {
+            if(!(udg_xp_keycode == 17)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func020C() {
+            if(!(udg_xp_keycode == 18)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func021C() {
+            if(!(udg_xp_keycode == 19)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func022C() {
+            if(!(udg_xp_keycode == 20)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func024C() {
+            if(!(udg_xp_keycode == 21)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func025C() {
+            if(!(udg_xp_keycode == 22)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func026C() {
+            if(!(udg_xp_keycode == 23)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func027C() {
+            if(!(udg_xp_keycode == 24)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func028C() {
+            if(!(udg_xp_keycode == 25)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func029C() {
+            if(!(udg_xp_keycode == 26)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func030C() {
+            if(!(udg_xp_keycode == 27)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func031C() {
+            if(!(udg_xp_keycode == 28)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func032C() {
+            if(!(udg_xp_keycode == 29)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func033C() {
+            if(!(udg_xp_keycode == 30)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func035C() {
+            if(!(udg_xp_keycode == 31)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func036C() {
+            if(!(udg_xp_keycode == 32)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func037C() {
+            if(!(udg_xp_keycode == 33)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func038C() {
+            if(!(udg_xp_keycode == 34)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func039C() {
+            if(!(udg_xp_keycode == 35)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func040C() {
+            if(!(udg_xp_keycode == 36)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func041C() {
+            if(!(udg_xp_keycode == 37)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func042C() {
+            if(!(udg_xp_keycode == 38)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func043C() {
+            if(!(udg_xp_keycode == 39)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func044C() {
+            if(!(udg_xp_keycode == 40)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func045C() {
+            if(!(udg_xp_keycode == 41)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func046C() {
+            if(!(udg_xp_keycode == 42)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func047C() {
+            if(!(udg_xp_keycode == 43)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func048C() {
+            if(!(udg_xp_keycode == 44)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Variable_Tabellen_1k_Func049C() {
+            if(!(udg_xp_keycode == 45)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Game_Func001Func001C() {
+            if(!(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]< 1000)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Game_Func001Func001Func002A() {
+            if(Trig_Encoder_Game_Func001Func001Func002Func001C()) {
+                udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]=(StringLength(GetPlayerName(GetEnumPlayer()))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+ 0))
+                udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(0 +(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))* 2)))
+                udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]+ 0)
+                udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ 3))
+            } else {
+                udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]=(StringLength(GetPlayerName(GetEnumPlayer()))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))))
+                udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))* 2)))
+                udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+ 0))
+                udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))+ 3))
+            }
+            if(Trig_Encoder_Game_Func001Func001Func002Func003C()) {
+                DoNothing()
+            } else {
+                udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 2)
+            }
+            udg_xp_keycode =(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 0)
+            Trig_Variable_Tabellen_Actions()
+            udg_xp_encoded_code[GetConvertedPlayerId(GetEnumPlayer())]= ""
+            udg_xp_encoded_code[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_scr3N[udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr2N_KEY[udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr3N[udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr3N[udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]]+ ""))))
+            console.log(udg_xp_keycode)
+        }
+        function Trig_Encoder_Game_Func001Func001Func001A() {
+            udg_xp_spielerlevel[GetConvertedPlayerId(GetTriggerPlayer())]=(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]-1000)
+            if(Trig_Encoder_Game_Func001Func001Func001Func002C()) {
+                udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]=(StringLength(GetPlayerName(GetEnumPlayer()))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+ 0))
+                udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(0 +(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))* 2)))
+                udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]+ 0)
+                udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ 3))
+                udg_xp_encoded_cp5[GetConvertedPlayerId(GetEnumPlayer())]=(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ 5))
+            } else {
+                udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]=(StringLength(GetPlayerName(GetEnumPlayer()))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))))
+                udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))* 2)))
+                udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+ 0))
+                udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))+ 3))
+                udg_xp_encoded_cp5[GetConvertedPlayerId(GetEnumPlayer())]=(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ 5))
+            }
+            if(Trig_Encoder_Game_Func001Func001Func001Func004C()) {
+                DoNothing()
+            } else {
+                udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 2)
+            }
+            udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 1)
+            udg_xp_keycode =(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 0)
+            Trig_Variable_Tabellen_Actions()
+            udg_xp_encoded_code[GetConvertedPlayerId(GetEnumPlayer())]= ""
+            udg_xp_encoded_code[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_scr3N[udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr2N_KEY[udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr3N[udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr3N[udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]]+ udg_xp_scr3N[udg_xp_encoded_cp5[GetConvertedPlayerId(GetEnumPlayer())]]))))
+            udg_xp_spielerlevel[GetConvertedPlayerId(GetTriggerPlayer())]=(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]+ 1000)
+        }
+        function Trig_SN_Encoder_Func002Func002Func002C() {
+            if(! Trig_SN_Encoder_Func002Func002Func002Func001C()) {
+                return false
+            }
+            return true
+        }
+        function Trig_SN_Encoder_Func002Func002Func003C() {
+            if(! Trig_SN_Encoder_Func002Func002Func003Func001C()) {
+                return false
+            }
+            return true
+        }
+        function Trig_SN_Encoder_Func002Func002Func004C() {
+            if(! Trig_SN_Encoder_Func002Func002Func004Func001C()) {
+                return false
+            }
+            return true
+        }
+        function Trig_SN_Encoder_Func002Func004C() {
+            if(!(udg_xp_encoded_sn1[GetConvertedPlayerId(GetEnumPlayer())]== 0)) {
+                return false
+            }
+            return true
+        }
+        function Trig_SN_Encoder_Func002Func005C() {
+            if(!(udg_xp_encoded_sn2[GetConvertedPlayerId(GetEnumPlayer())]== 0)) {
+                return false
+            }
+            return true
+        }
+        function Trig_SN_Encoder_Func002Func006C() {
+            if(!(udg_xp_encoded_sn3[GetConvertedPlayerId(GetEnumPlayer())]== 0)) {
+                return false
+            }
+            return true
+        }
+        function Trig_SN_Encoder_Func004Func003Func002C() {
+            if(! Trig_SN_Encoder_Func004Func003Func002Func001C()) {
+                return false
+            }
+            return true
+        }
+        function Trig_SN_Encoder_Func004Func003Func004C() {
+            if(! Trig_SN_Encoder_Func004Func003Func004Func001C()) {
+                return false
+            }
+            return true
+        }
+        function Trig_SN_Encoder_Func004Func003Func004Func003C() {
+            if(!(StringCase(GetPlayerName(GetEnumPlayer()), false)== "cactuzz")) {
+                return false
+            }
+            return true
+        }
+        function Trig_SN_Encoder_Func004Func005Func002C() {
+            if(!(SubStringBJ(GetPlayerName(GetEnumPlayer()), 4, 4)== udg_xp_scr1N2[bj_forLoopAIndex])) {
+                return false
+            }
+            return true
+        }
+        function Trig_SN_Encoder_Func004Func005Func004C() {
+            if(!(SubStringBJ(GetPlayerName(GetEnumPlayer()), StringLength(GetPlayerName(GetEnumPlayer())), StringLength(GetPlayerName(GetEnumPlayer())))== udg_xp_scr1N2[bj_forLoopAIndex])) {
+                return false
+            }
+            return true
+        }
+        function Trig_SN_Encoder_Func004Func007C() {
+            if(!(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]== 0)) {
+                return false
+            }
+            return true
+        }
+        function Trig_SN_Encoder_Func004Func008C() {
+            if(!(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]== 0)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Game_Func001Func001Func002Func001C() {
+            if(!(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]<= 99)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Game_Func001Func001Func002Func003C() {
+            if(!(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]<= 688)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Game_Func001Func001Func001Func002C() {
+            if(!(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]<= 99)) {
+                return false
+            }
+            return true
+        }
+        function Trig_Encoder_Game_Func001Func001Func001Func004C() {
+            if(!(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]<= 688)) {
+                return false
+            }
+            return true
+        }
+        function Trig_SN_Encoder_Func002Func002Func002Func001C() {
+            if((SubStringBJ(GetPlayerName(GetEnumPlayer()), 1, 1)== udg_xp_scr1A[bj_forLoopAIndex])) {
+                return true
+            }
+            if((SubStringBJ(GetPlayerName(GetEnumPlayer()), 1, 1)== StringCase(udg_xp_scr1A[bj_forLoopAIndex], false))) {
+                return true
+            }
+            return false
+        }
+        function Trig_SN_Encoder_Func002Func002Func003Func001C() {
+            if((SubStringBJ(GetPlayerName(GetEnumPlayer()), 4, 4)== udg_xp_scr1A[bj_forLoopAIndex])) {
+                return true
+            }
+            if((SubStringBJ(GetPlayerName(GetEnumPlayer()), 4, 4)== StringCase(udg_xp_scr1A[bj_forLoopAIndex], false))) {
+                return true
+            }
+            return false
+        }
+        function Trig_SN_Encoder_Func002Func002Func004Func001C() {
+            if((SubStringBJ(GetPlayerName(GetEnumPlayer()), 6, 6)== udg_xp_scr1A[bj_forLoopAIndex])) {
+                return true
+            }
+            if((SubStringBJ(GetPlayerName(GetEnumPlayer()), 6, 6)== StringCase(udg_xp_scr1A[bj_forLoopAIndex], false))) {
+                return true
+            }
+            return false
+        }
+        function Trig_SN_Encoder_Func004Func003Func002Func001C() {
+            if((SubStringBJ(GetPlayerName(GetEnumPlayer()), 4, 4)== udg_xp_scr1N1[bj_forLoopAIndex])) {
+                return true
+            }
+            if((SubStringBJ(GetPlayerName(GetEnumPlayer()), 4, 4)== StringCase(udg_xp_scr1N1[bj_forLoopAIndex], false))) {
+                return true
+            }
+            return false
+        }
+        function Trig_SN_Encoder_Func004Func003Func004Func001C() {
+            if((SubStringBJ(GetPlayerName(GetEnumPlayer()), StringLength(GetPlayerName(GetEnumPlayer())), StringLength(GetPlayerName(GetEnumPlayer())))== udg_xp_scr1N1[bj_forLoopAIndex])) {
+                return true
+            }
+            if((SubStringBJ(GetPlayerName(GetEnumPlayer()), StringLength(GetPlayerName(GetEnumPlayer())), StringLength(GetPlayerName(GetEnumPlayer())))== StringCase(udg_xp_scr1N1[bj_forLoopAIndex], false))) {
+                return true
+            }
+            return false
+        }
+    </script>
+</body>
+</html>

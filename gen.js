@@ -40,9 +40,7 @@ const TYPES = [
 ]
 
 const REPLACES = (isGlobal = false) => [
-    ['ForForce(GetPlayersByMapControl(MAP_CONTROL_USER), function Trig_Encoder_Game_Func001Func001Func002A)', 'Trig_Encoder_Game_Func001Func001Func002A()'],
-    ['ForForce(GetPlayersMatching(Condition(function Trig_Encoder_Game_Func001Func001Func001001001)), function Trig_Encoder_Game_Func001Func001Func001A)', 'Trig_Encoder_Game_Func001Func001Func001A()'],
-    ['ForForce(udg_verteidiger, function Trig_Encoder_Game_Func001A)', 'Trig_Encoder_Game_Func001A()'],
+    [/ForForce\(.*, function (.*)\)/, '$1()'],
     [') then', ') {'],
     ['else', '} else {'],
     ['endif', '}'],
@@ -52,6 +50,7 @@ const REPLACES = (isGlobal = false) => [
     ['call ', ''],
     ['local ', ''],
     ['not(', '!('],
+    ['not ', '! '],
     ...TYPES.map(type => [`	${type} `, isGlobal ? 'export let ' : 'let ']),
     [/array (\w+)/, '$1 = []'],
     ['endloop', '}'],
@@ -100,14 +99,16 @@ const FILLS = [
     function GetEnumPlayer() { return 0 },
     function S2I(s) { return Number.parseInt(s, 10) },
     function I2S(i) { return String(i) },
-    function SubStringBJ(str, start, end) { return str.substring(start-1, end) },
+    function SubStringBJ(str, start, end) { return str.substring(start - 1, end) },
     function StringLength(str) { return str.length },
+    function StringCase(str) { return str.toLowerCase() },
     function GetPlayerName() { return playerName },
     function getCode(xp, name) {
         InitGlobals()
         playerName = name
         udg_xp_spielerlevel[1] = xp
         Trig_Fixe_Tabellen_Actions()
+        Trig_SN_Encoder_Actions()
         Trig_Encoder_Func001A()
 
         console.log(
@@ -116,7 +117,14 @@ const FILLS = [
     }
 ]
 let extractJS = FILLS.map(fn => 'export ' + fn.toString()).join('\n') + '\n\n'
-const dep = [blocks[0], findFnBlock("InitGlobals"), findFnBlock('Trig_Fixe_Tabellen_Actions'), findFnBlock("Trig_Encoder_Func001A"), findFnBlock('Trig_Encoder_Game_Actions')]
+const dep = [
+    blocks[0], 
+    findFnBlock("InitGlobals"),
+    findFnBlock('Trig_Fixe_Tabellen_Actions'),
+    findFnBlock("Trig_Encoder_Func001A"),
+    findFnBlock('Trig_Encoder_Game_Actions'),
+    findFnBlock('Trig_SN_Encoder_Actions')
+]
 let block
 let i = 0
 while(block = dep[i++]) {
