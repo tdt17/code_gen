@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs'
-const script = readFileSync('war3map.j','utf8')
+const script = readFileSync('war3map_6.0.j','utf8')
 const blocks = []
 script.split('\n').forEach(line => {
     const [, keyword, name] = line.match(/^(\w+)(?: (\w+))?/) || []
@@ -109,7 +109,7 @@ const FILLS = [
         udg_xp_spielerlevel[1] = xp
         Trig_Fixe_Tabellen_Actions()
         Trig_SN_Encoder_Actions()
-        Trig_Encoder_Func001A()
+        Trig_Encoder_Actions()
 
         console.log(
             udg_xp_encoded_code[1]
@@ -121,7 +121,7 @@ const dep = [
     blocks[0], 
     findFnBlock("InitGlobals"),
     findFnBlock('Trig_Fixe_Tabellen_Actions'),
-    findFnBlock("Trig_Encoder_Func001A"),
+    findFnBlock("Trig_Encoder_Actions"),
     findFnBlock('Trig_Encoder_Game_Actions'),
     findFnBlock('Trig_SN_Encoder_Actions')
 ]
@@ -134,7 +134,7 @@ while(block = dep[i++]) {
         .join('\n')
 }
 
-extractJS += '\n\ngetCode(20, "0")'
+extractJS += '\n\ngetCode(9000, "0")'
 
 writeFileSync('output.js', extractJS, 'utf8')
 

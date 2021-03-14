@@ -14,7 +14,7 @@ export function getCode(xp, name) {
         udg_xp_spielerlevel[1] = xp
         Trig_Fixe_Tabellen_Actions()
         Trig_SN_Encoder_Actions()
-        Trig_Encoder_Func001A()
+        Trig_Encoder_Actions()
 
         console.log(
             udg_xp_encoded_code[1]
@@ -1819,6 +1819,13 @@ let i = 0
 		udg_xp_scrMP[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
 		bj_forLoopAIndex = bj_forLoopAIndex + 1
 	}
+}export function Trig_Encoder_Actions() {
+	Trig_Encoder_Func001A()
+}export function Trig_Encoder_Game_Actions() {
+	Trig_Encoder_Game_Func001A()
+}export function Trig_SN_Encoder_Actions() {
+	Trig_SN_Encoder_Func002A()
+	Trig_SN_Encoder_Func004A()
 }export function Trig_Encoder_Func001A() {
 	if(Trig_Encoder_Func001Func001C()) {
 		udg_VariVari2[7]= GetConvertedPlayerId(GetEnumPlayer())
@@ -1927,11 +1934,84 @@ let i = 0
 		udg_xp_encoded_code[udg_VariVari2[10]]=(udg_xp_scr2N_KEY[udg_xp_encoded_cp1[udg_VariVari2[10]]]+(udg_xp_scr3N[udg_xp_encoded_cp2[udg_VariVari2[10]]]+(udg_xp_scr3N[udg_xp_encoded_cp3[udg_VariVari2[10]]]+(udg_xp_scr3N[udg_xp_encoded_cp4[udg_VariVari2[10]]]+(udg_xp_scr3N[udg_xp_encoded_cp5[udg_VariVari2[10]]]+(udg_xp_scr3N[udg_xp_encoded_cp6[udg_VariVari2[10]]]+ udg_xp_scr3N[udg_xp_encoded_cp7[udg_VariVari2[10]]]))))))
 		udg_xp_spielerlevel[udg_VariVari2[10]]=(udg_xp_spielerlevel[udg_VariVari2[10]]+ 9003)
 	}
-}export function Trig_Encoder_Game_Actions() {
-	Trig_Encoder_Game_Func001A()
-}export function Trig_SN_Encoder_Actions() {
-	Trig_SN_Encoder_Func002A()
-	Trig_SN_Encoder_Func004A()
+}export function Trig_Encoder_Game_Func001A() {
+	if(Trig_Encoder_Game_Func001Func001C()) {
+		Trig_Encoder_Game_Func001Func001Func002A()
+	} else {
+		Trig_Encoder_Game_Func001Func001Func001A()
+	}
+}export function Trig_SN_Encoder_Func002A() {
+	bj_forLoopAIndex = 1
+	bj_forLoopAIndexEnd = 26
+	while(true) {
+	if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+		if(Trig_SN_Encoder_Func002Func002Func002C()) {
+			udg_xp_encoded_sn1[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
+		} else {
+		}
+		if(Trig_SN_Encoder_Func002Func002Func003C()) {
+			udg_xp_encoded_sn2[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
+		} else {
+		}
+		if(Trig_SN_Encoder_Func002Func002Func004C()) {
+			udg_xp_encoded_sn3[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
+		} else {
+		}
+		bj_forLoopAIndex = bj_forLoopAIndex + 1
+	}
+	if(Trig_SN_Encoder_Func002Func004C()) {
+		udg_xp_encoded_sn1[GetConvertedPlayerId(GetEnumPlayer())]= 1
+	} else {
+	}
+	if(Trig_SN_Encoder_Func002Func005C()) {
+		udg_xp_encoded_sn2[GetConvertedPlayerId(GetEnumPlayer())]= 2
+	} else {
+	}
+	if(Trig_SN_Encoder_Func002Func006C()) {
+		udg_xp_encoded_sn3[GetConvertedPlayerId(GetEnumPlayer())]= 3
+	} else {
+	}
+}export function Trig_SN_Encoder_Func004A() {
+	bj_forLoopAIndex = 1
+	bj_forLoopAIndexEnd = 26
+	while(true) {
+	if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+		if(Trig_SN_Encoder_Func004Func003Func002C()) {
+			udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
+		} else {
+		}
+		if(Trig_SN_Encoder_Func004Func003Func004C()) {
+			udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
+			if(Trig_SN_Encoder_Func004Func003Func004Func003C()) {
+				udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+ 1)
+			} else {
+			}
+		} else {
+		}
+		bj_forLoopAIndex = bj_forLoopAIndex + 1
+	}
+	bj_forLoopAIndex = 1
+	bj_forLoopAIndexEnd = 17
+	while(true) {
+	if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
+		if(Trig_SN_Encoder_Func004Func005Func002C()) {
+			udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
+		} else {
+		}
+		if(Trig_SN_Encoder_Func004Func005Func004C()) {
+			udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
+		} else {
+		}
+		bj_forLoopAIndex = bj_forLoopAIndex + 1
+	}
+	if(Trig_SN_Encoder_Func004Func007C()) {
+		udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]= 2
+	} else {
+	}
+	if(Trig_SN_Encoder_Func004Func008C()) {
+		udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]= 4
+	} else {
+	}
 }export function Trig_Encoder_Func001Func001C() {
 	if(!(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]< 9999)) {
 		return false
@@ -2395,84 +2475,124 @@ let i = 0
 		udg_xp_scr3N[bj_forLoopAIndex]= SubStringBJ(udg_temp_string_3, bj_forLoopAIndex, bj_forLoopAIndex)
 		bj_forLoopAIndex = bj_forLoopAIndex + 1
 	}
-}export function Trig_Encoder_Game_Func001A() {
-	if(Trig_Encoder_Game_Func001Func001C()) {
-		Trig_Encoder_Game_Func001Func001Func002A()
+}export function Trig_Encoder_Game_Func001Func001C() {
+	if(!(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]< 1000)) {
+		return false
+	}
+	return true
+}export function Trig_Encoder_Game_Func001Func001Func002A() {
+	if(Trig_Encoder_Game_Func001Func001Func002Func001C()) {
+		udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]=(StringLength(GetPlayerName(GetEnumPlayer()))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+ 0))
+		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(0 +(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))* 2)))
+		udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]+ 0)
+		udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ 3))
 	} else {
-		Trig_Encoder_Game_Func001Func001Func001A()
+		udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]=(StringLength(GetPlayerName(GetEnumPlayer()))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))))
+		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))* 2)))
+		udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+ 0))
+		udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))+ 3))
 	}
-}export function Trig_SN_Encoder_Func002A() {
-	bj_forLoopAIndex = 1
-	bj_forLoopAIndexEnd = 26
-	while(true) {
-	if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
-		if(Trig_SN_Encoder_Func002Func002Func002C()) {
-			udg_xp_encoded_sn1[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
-		} else {
-		}
-		if(Trig_SN_Encoder_Func002Func002Func003C()) {
-			udg_xp_encoded_sn2[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
-		} else {
-		}
-		if(Trig_SN_Encoder_Func002Func002Func004C()) {
-			udg_xp_encoded_sn3[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
-		} else {
-		}
-		bj_forLoopAIndex = bj_forLoopAIndex + 1
-	}
-	if(Trig_SN_Encoder_Func002Func004C()) {
-		udg_xp_encoded_sn1[GetConvertedPlayerId(GetEnumPlayer())]= 1
+	if(Trig_Encoder_Game_Func001Func001Func002Func003C()) {
+		DoNothing()
 	} else {
+		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 2)
 	}
-	if(Trig_SN_Encoder_Func002Func005C()) {
-		udg_xp_encoded_sn2[GetConvertedPlayerId(GetEnumPlayer())]= 2
+	udg_xp_keycode =(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 0)
+	Trig_Variable_Tabellen_Actions()
+	udg_xp_encoded_code[GetConvertedPlayerId(GetEnumPlayer())]= ""
+	udg_xp_encoded_code[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_scr3N[udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr2N_KEY[udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr3N[udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr3N[udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]]+ ""))))
+	console.log(udg_xp_keycode)
+}export function Trig_Encoder_Game_Func001Func001Func001A() {
+	udg_xp_spielerlevel[GetConvertedPlayerId(GetTriggerPlayer())]=(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]-1000)
+	if(Trig_Encoder_Game_Func001Func001Func001Func002C()) {
+		udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]=(StringLength(GetPlayerName(GetEnumPlayer()))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+ 0))
+		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(0 +(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))* 2)))
+		udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]+ 0)
+		udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ 3))
+		udg_xp_encoded_cp5[GetConvertedPlayerId(GetEnumPlayer())]=(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ 5))
 	} else {
+		udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]=(StringLength(GetPlayerName(GetEnumPlayer()))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))))
+		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))* 2)))
+		udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+ 0))
+		udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))+ 3))
+		udg_xp_encoded_cp5[GetConvertedPlayerId(GetEnumPlayer())]=(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ 5))
 	}
-	if(Trig_SN_Encoder_Func002Func006C()) {
-		udg_xp_encoded_sn3[GetConvertedPlayerId(GetEnumPlayer())]= 3
+	if(Trig_Encoder_Game_Func001Func001Func001Func004C()) {
+		DoNothing()
 	} else {
+		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 2)
 	}
-}export function Trig_SN_Encoder_Func004A() {
-	bj_forLoopAIndex = 1
-	bj_forLoopAIndexEnd = 26
-	while(true) {
-	if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
-		if(Trig_SN_Encoder_Func004Func003Func002C()) {
-			udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
-		} else {
-		}
-		if(Trig_SN_Encoder_Func004Func003Func004C()) {
-			udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
-			if(Trig_SN_Encoder_Func004Func003Func004Func003C()) {
-				udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+ 1)
-			} else {
-			}
-		} else {
-		}
-		bj_forLoopAIndex = bj_forLoopAIndex + 1
+	udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 1)
+	udg_xp_keycode =(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 0)
+	Trig_Variable_Tabellen_Actions()
+	udg_xp_encoded_code[GetConvertedPlayerId(GetEnumPlayer())]= ""
+	udg_xp_encoded_code[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_scr3N[udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr2N_KEY[udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr3N[udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr3N[udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]]+ udg_xp_scr3N[udg_xp_encoded_cp5[GetConvertedPlayerId(GetEnumPlayer())]]))))
+	udg_xp_spielerlevel[GetConvertedPlayerId(GetTriggerPlayer())]=(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]+ 1000)
+}export function Trig_SN_Encoder_Func002Func002Func002C() {
+	if(! Trig_SN_Encoder_Func002Func002Func002Func001C()) {
+		return false
 	}
-	bj_forLoopAIndex = 1
-	bj_forLoopAIndexEnd = 17
-	while(true) {
-	if(bj_forLoopAIndex > bj_forLoopAIndexEnd) break
-		if(Trig_SN_Encoder_Func004Func005Func002C()) {
-			udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
-		} else {
-		}
-		if(Trig_SN_Encoder_Func004Func005Func004C()) {
-			udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]= bj_forLoopAIndex
-		} else {
-		}
-		bj_forLoopAIndex = bj_forLoopAIndex + 1
+	return true
+}export function Trig_SN_Encoder_Func002Func002Func003C() {
+	if(! Trig_SN_Encoder_Func002Func002Func003Func001C()) {
+		return false
 	}
-	if(Trig_SN_Encoder_Func004Func007C()) {
-		udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]= 2
-	} else {
+	return true
+}export function Trig_SN_Encoder_Func002Func002Func004C() {
+	if(! Trig_SN_Encoder_Func002Func002Func004Func001C()) {
+		return false
 	}
-	if(Trig_SN_Encoder_Func004Func008C()) {
-		udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]= 4
-	} else {
+	return true
+}export function Trig_SN_Encoder_Func002Func004C() {
+	if(!(udg_xp_encoded_sn1[GetConvertedPlayerId(GetEnumPlayer())]== 0)) {
+		return false
 	}
+	return true
+}export function Trig_SN_Encoder_Func002Func005C() {
+	if(!(udg_xp_encoded_sn2[GetConvertedPlayerId(GetEnumPlayer())]== 0)) {
+		return false
+	}
+	return true
+}export function Trig_SN_Encoder_Func002Func006C() {
+	if(!(udg_xp_encoded_sn3[GetConvertedPlayerId(GetEnumPlayer())]== 0)) {
+		return false
+	}
+	return true
+}export function Trig_SN_Encoder_Func004Func003Func002C() {
+	if(! Trig_SN_Encoder_Func004Func003Func002Func001C()) {
+		return false
+	}
+	return true
+}export function Trig_SN_Encoder_Func004Func003Func004C() {
+	if(! Trig_SN_Encoder_Func004Func003Func004Func001C()) {
+		return false
+	}
+	return true
+}export function Trig_SN_Encoder_Func004Func003Func004Func003C() {
+	if(!(StringCase(GetPlayerName(GetEnumPlayer()), false)== "cactuzz")) {
+		return false
+	}
+	return true
+}export function Trig_SN_Encoder_Func004Func005Func002C() {
+	if(!(SubStringBJ(GetPlayerName(GetEnumPlayer()), 4, 4)== udg_xp_scr1N2[bj_forLoopAIndex])) {
+		return false
+	}
+	return true
+}export function Trig_SN_Encoder_Func004Func005Func004C() {
+	if(!(SubStringBJ(GetPlayerName(GetEnumPlayer()), StringLength(GetPlayerName(GetEnumPlayer())), StringLength(GetPlayerName(GetEnumPlayer())))== udg_xp_scr1N2[bj_forLoopAIndex])) {
+		return false
+	}
+	return true
+}export function Trig_SN_Encoder_Func004Func007C() {
+	if(!(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]== 0)) {
+		return false
+	}
+	return true
+}export function Trig_SN_Encoder_Func004Func008C() {
+	if(!(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]== 0)) {
+		return false
+	}
+	return true
 }export function Trig_Variable_Tabellen_Func002C() {
 	if(!(udg_xp_keycode == 1)) {
 		return false
@@ -2923,124 +3043,6 @@ let i = 0
 		return false
 	}
 	return true
-}export function Trig_Encoder_Game_Func001Func001C() {
-	if(!(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]< 1000)) {
-		return false
-	}
-	return true
-}export function Trig_Encoder_Game_Func001Func001Func002A() {
-	if(Trig_Encoder_Game_Func001Func001Func002Func001C()) {
-		udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]=(StringLength(GetPlayerName(GetEnumPlayer()))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+ 0))
-		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(0 +(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))* 2)))
-		udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]+ 0)
-		udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ 3))
-	} else {
-		udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]=(StringLength(GetPlayerName(GetEnumPlayer()))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))))
-		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))* 2)))
-		udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+ 0))
-		udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))+ 3))
-	}
-	if(Trig_Encoder_Game_Func001Func001Func002Func003C()) {
-		DoNothing()
-	} else {
-		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 2)
-	}
-	udg_xp_keycode =(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 0)
-	Trig_Variable_Tabellen_Actions()
-	udg_xp_encoded_code[GetConvertedPlayerId(GetEnumPlayer())]= ""
-	udg_xp_encoded_code[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_scr3N[udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr2N_KEY[udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr3N[udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr3N[udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]]+ ""))))
-	console.log(udg_xp_keycode)
-}export function Trig_Encoder_Game_Func001Func001Func001A() {
-	udg_xp_spielerlevel[GetConvertedPlayerId(GetTriggerPlayer())]=(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]-1000)
-	if(Trig_Encoder_Game_Func001Func001Func001Func002C()) {
-		udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]=(StringLength(GetPlayerName(GetEnumPlayer()))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+ 0))
-		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(0 +(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))* 2)))
-		udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]+ 0)
-		udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ 3))
-		udg_xp_encoded_cp5[GetConvertedPlayerId(GetEnumPlayer())]=(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ 5))
-	} else {
-		udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]=(StringLength(GetPlayerName(GetEnumPlayer()))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))))
-		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))* 2)))
-		udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 1, 1))+ 0))
-		udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))+ 3))
-		udg_xp_encoded_cp5[GetConvertedPlayerId(GetEnumPlayer())]=(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 3, 3))+(S2I(SubStringBJ(I2S(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]), 2, 2))+ 5))
-	}
-	if(Trig_Encoder_Game_Func001Func001Func001Func004C()) {
-		DoNothing()
-	} else {
-		udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 2)
-	}
-	udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 1)
-	udg_xp_keycode =(udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]+ 0)
-	Trig_Variable_Tabellen_Actions()
-	udg_xp_encoded_code[GetConvertedPlayerId(GetEnumPlayer())]= ""
-	udg_xp_encoded_code[GetConvertedPlayerId(GetEnumPlayer())]=(udg_xp_scr3N[udg_xp_encoded_cp1[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr2N_KEY[udg_xp_encoded_cp2[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr3N[udg_xp_encoded_cp3[GetConvertedPlayerId(GetEnumPlayer())]]+(udg_xp_scr3N[udg_xp_encoded_cp4[GetConvertedPlayerId(GetEnumPlayer())]]+ udg_xp_scr3N[udg_xp_encoded_cp5[GetConvertedPlayerId(GetEnumPlayer())]]))))
-	udg_xp_spielerlevel[GetConvertedPlayerId(GetTriggerPlayer())]=(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]+ 1000)
-}export function Trig_SN_Encoder_Func002Func002Func002C() {
-	if(! Trig_SN_Encoder_Func002Func002Func002Func001C()) {
-		return false
-	}
-	return true
-}export function Trig_SN_Encoder_Func002Func002Func003C() {
-	if(! Trig_SN_Encoder_Func002Func002Func003Func001C()) {
-		return false
-	}
-	return true
-}export function Trig_SN_Encoder_Func002Func002Func004C() {
-	if(! Trig_SN_Encoder_Func002Func002Func004Func001C()) {
-		return false
-	}
-	return true
-}export function Trig_SN_Encoder_Func002Func004C() {
-	if(!(udg_xp_encoded_sn1[GetConvertedPlayerId(GetEnumPlayer())]== 0)) {
-		return false
-	}
-	return true
-}export function Trig_SN_Encoder_Func002Func005C() {
-	if(!(udg_xp_encoded_sn2[GetConvertedPlayerId(GetEnumPlayer())]== 0)) {
-		return false
-	}
-	return true
-}export function Trig_SN_Encoder_Func002Func006C() {
-	if(!(udg_xp_encoded_sn3[GetConvertedPlayerId(GetEnumPlayer())]== 0)) {
-		return false
-	}
-	return true
-}export function Trig_SN_Encoder_Func004Func003Func002C() {
-	if(! Trig_SN_Encoder_Func004Func003Func002Func001C()) {
-		return false
-	}
-	return true
-}export function Trig_SN_Encoder_Func004Func003Func004C() {
-	if(! Trig_SN_Encoder_Func004Func003Func004Func001C()) {
-		return false
-	}
-	return true
-}export function Trig_SN_Encoder_Func004Func003Func004Func003C() {
-	if(!(StringCase(GetPlayerName(GetEnumPlayer()), false)== "cactuzz")) {
-		return false
-	}
-	return true
-}export function Trig_SN_Encoder_Func004Func005Func002C() {
-	if(!(SubStringBJ(GetPlayerName(GetEnumPlayer()), 4, 4)== udg_xp_scr1N2[bj_forLoopAIndex])) {
-		return false
-	}
-	return true
-}export function Trig_SN_Encoder_Func004Func005Func004C() {
-	if(!(SubStringBJ(GetPlayerName(GetEnumPlayer()), StringLength(GetPlayerName(GetEnumPlayer())), StringLength(GetPlayerName(GetEnumPlayer())))== udg_xp_scr1N2[bj_forLoopAIndex])) {
-		return false
-	}
-	return true
-}export function Trig_SN_Encoder_Func004Func007C() {
-	if(!(udg_xp_encoded_sn2_2[GetConvertedPlayerId(GetEnumPlayer())]== 0)) {
-		return false
-	}
-	return true
-}export function Trig_SN_Encoder_Func004Func008C() {
-	if(!(udg_xp_encoded_sn4_2[GetConvertedPlayerId(GetEnumPlayer())]== 0)) {
-		return false
-	}
-	return true
 }export function Trig_Encoder_Game_Func001Func001Func002Func001C() {
 	if(!(udg_xp_spielerlevel[GetConvertedPlayerId(GetEnumPlayer())]<= 99)) {
 		return false
@@ -3103,4 +3105,4 @@ let i = 0
 	return false
 }
 
-getCode(20, "0")
+getCode(9000, "0")
