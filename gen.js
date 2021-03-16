@@ -94,7 +94,7 @@ const FITLERS = [
 ]
 
 const FILLS = [
-    'let bj_forLoopAIndex = 0, bj_forLoopAIndexEnd = 0, playerName = \'TdT\'',
+    'let bj_forLoopAIndex = 0, bj_forLoopAIndexEnd = 0, playerName = \'tdt\'',
     function GetConvertedPlayerId(i) { return i + 1 },
     function ConvertedPlayer(i) { return i - 1 },
     function GetEnumPlayer() { return 0 },
@@ -107,6 +107,7 @@ const FILLS = [
     function getCode(xp, name) {
         InitGlobals()
         playerName = name
+        udg_xp_entered_code = 'cheats'
         udg_xp_spielerlevel[1] = xp
         udg_xp_test[1] = xp
         Trig_Fixe_Tabellen_Actions()
@@ -134,7 +135,7 @@ while(block = dep[i++]) {
         .join('\n')
 }
 
-extractJS += '\n\nconsole.log(getCode(1000, \'tdt\'))'
+extractJS += '\n\nconsole.log(getCode(15000, \'tdt\'))'
 
 writeFileSync('output.js', extractJS, 'utf8')
 

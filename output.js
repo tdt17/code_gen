@@ -1,4 +1,4 @@
-export let bj_forLoopAIndex = 0, bj_forLoopAIndexEnd = 0, playerName = 'TdT'
+export let bj_forLoopAIndex = 0, bj_forLoopAIndexEnd = 0, playerName = 'tdt'
 export function GetConvertedPlayerId(i) { return i + 1 }
 export function ConvertedPlayer(i) { return i - 1 }
 export function GetEnumPlayer() { return 0 }
@@ -11,6 +11,7 @@ export function GetPlayerName() { return playerName }
 export function getCode(xp, name) {
         InitGlobals()
         playerName = name
+        udg_xp_entered_code = 'cheats'
         udg_xp_spielerlevel[1] = xp
         udg_xp_test[1] = xp
         Trig_Fixe_Tabellen_Actions()
@@ -3104,4 +3105,4 @@ let i = 0
 	return false
 }
 
-console.log(getCode(1000, 'tdt'))
+console.log(getCode(15000, 'tdt'))
