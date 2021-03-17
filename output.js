@@ -11,7 +11,7 @@ export function GetPlayerName() { return playerName }
 export function getCode(xp, name) {
         InitGlobals()
         playerName = name
-        udg_xp_entered_code = 'cheats'
+        udg_xp_entered_code[1] = 'cheats'
         udg_xp_spielerlevel[1] = xp
         udg_xp_test[1] = xp
         Trig_Fixe_Tabellen_Actions()
